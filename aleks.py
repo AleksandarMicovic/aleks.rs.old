@@ -4,14 +4,18 @@
 from flask import Flask, render_template, url_for
 from flask_flatpages import FlatPages
 from werkzeug.contrib.atom import AtomFeed
+from flask_frozen import Freezer
+import sys
 
 DEBUG = True
 FLATPAGES_AUTO_RELOAD = DEBUG
 FLATPAGES_EXTENSION = '.md'
+FREEZER_DEFAULT_MIMETYPE = 'text/html'
 
 app = Flask(__name__)
 app.config.from_object(__name__)
 pages = FlatPages(app)
+freezer = Freezer(app)
 
 # Top level pages.
 
@@ -39,14 +43,14 @@ def writings():
 def about():
     return render_template("about.html")
 
-@app.route("/tag/<string:tag>/")
+@app.route("/tag/<string:tag>")
 def tag(tag):
     tagged = [page for page in pages if tag in page.meta.get('tags', [])]
     return render_template("tag.html", pages=tagged, tag=tag, full=False)
 
 # Pages with content.
 
-@app.route("/<path:path>/")
+@app.route("/<path:path>")
 def page(path):
     page = pages.get_or_404(path)
     return render_template("page.html", page=page)
@@ -71,4 +75,7 @@ def recent_feed():
     return feed.get_response()
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=8080)
+    if len(sys.argv) > 1 and sys.argv[1] == "build":
+        freezer.freeze()
+    else:
+        freezer.run(debug=True)

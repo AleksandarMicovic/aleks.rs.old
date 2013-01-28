@@ -3,7 +3,8 @@ summary: I describe this blog's setup.
 author: Aleksandar Micovic
 type: [blog]
 tags: [python, flask, jinja2]
-date: 2012-10-28
+date: 2013-01-27
+updated: 2013-01-27
 
 ## Why
 
