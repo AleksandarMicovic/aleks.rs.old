@@ -28,7 +28,7 @@
 
 @media screen and (max-width: 70em) {
     #container {
-        width: 100%;
+        width: 90%;
     }
 
     #title {
@@ -84,7 +84,7 @@ html, body {
 }
 
 #content {
-    font-size: 1.25em;
+    font-size: 1.3em;
     line-height: 1.6em;
 }
 
