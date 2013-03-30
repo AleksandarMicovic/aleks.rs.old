@@ -190,7 +190,7 @@ $ cowfortune
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Do you get the idea? The UNIX philosophy to do one thing and do it well means that &lt;span class='code'&gt;ls&lt;/span&gt; need not worry about every possible way to list files, and &lt;span class='code'&gt;figlet&lt;span&gt;, &lt;span class='code'&gt;cowsay&lt;/span&gt; and &lt;span class='code'&gt;rot13&lt;/code&gt; need not know anything about listing files.&lt;/p&gt;
+&lt;p&gt;Do you get the idea? The UNIX philosophy to do one thing and do it well means that &lt;span class='code'&gt;ls&lt;/span&gt; need not worry about every possible way to list files, and &lt;span class='code'&gt;figlet&lt;/span&gt;, &lt;span class='code'&gt;cowsay&lt;/span&gt; and &lt;span class='code'&gt;rot13&lt;/span&gt; need not know anything about listing files.&lt;/p&gt;
 &lt;p&gt;&lt;span class='code'&gt;ls&lt;/span&gt; is an exception however, since it is &lt;em&gt;the&lt;/em&gt; most commonly used tool, therefore it provides some of its own conveniences like sorting, etc.&lt;/p&gt;
 &lt;p&gt;If you think Apple ][ and Commodore 64 are funner than UNIX, you're an accountant or a gamer, not a hacker, and you should probably go back to /g/. &lt;/p&gt;
 &lt;h2 id="about"&gt;About&lt;/h2&gt;

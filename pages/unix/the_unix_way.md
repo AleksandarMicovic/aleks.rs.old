@@ -4,7 +4,7 @@ author: Aleksandar Micovic
 type: page
 tags: []
 date: 2013-03-29
-updated: 2013-03-29
+updated: 2013-03-30
 
 
 ## So we begin...
@@ -127,7 +127,7 @@ Want to have a program where the cow tells you your fortune?
                 ||----w |
                 ||     ||
 
-Do you get the idea? The UNIX philosophy to do one thing and do it well means that <span class='code'>ls</span> need not worry about every possible way to list files, and <span class='code'>figlet<span>, <span class='code'>cowsay</span> and <span class='code'>rot13</code> need not know anything about listing files.
+Do you get the idea? The UNIX philosophy to do one thing and do it well means that <span class='code'>ls</span> need not worry about every possible way to list files, and <span class='code'>figlet</span>, <span class='code'>cowsay</span> and <span class='code'>rot13</span> need not know anything about listing files.
 
 <span class='code'>ls</span> is an exception however, since it is *the* most commonly used tool, therefore it provides some of its own conveniences like sorting, etc.
 
