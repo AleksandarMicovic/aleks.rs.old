@@ -1,0 +1,199 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="/static/css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/pygments.css" />
+    <title>aleks.rs</title>
+  </head>
+  <body>
+    <div id="container">
+
+      <!-- Header -->
+      <div id="header">
+        <a id="title" href="/">aleks.rs</a>
+
+	<div id="navigation">
+	  <ul>
+            <li>
+              <a href="/about/">About</a>
+            </li>
+            <li>
+              <a href="/writings/">Writings</a>
+            </li>
+	    <li>
+              <a href="/projects/">Projects</a>
+            </li>
+            <li>
+              <a href="/archive/">Archive</a>
+            </li>
+	  </ul>
+	</div>
+
+      </div>
+         <div id="feed">
+          <a href="/recent.atom"><img src="/static/images/global/feed.svg" /></a>
+        </div>
+     
+      <!-- Content -->
+      <div id="content">
+        
+    <h1>The Unix Way</h1>
+ 
+    
+
+    <h2 id="so-we-begin">So we begin...</h2>
+<p><span class='code'>ls</span> does one thing and does it well. It lists files.</p>
+<div class="codehilite"><pre>$ ls
+file1  file2  file3  filea  fileb  filec
+</pre></div>
+
+
+<p>Or it can list a single file.</p>
+<div class="codehilite"><pre>$ ls file1
+file1
+</pre></div>
+
+
+<p>Or it can list several files.</p>
+<div class="codehilite"><pre>$ ls file1 file2 filec
+file1  file2  filec
+</pre></div>
+
+
+<p>But <span class='code'>ls</span> doesn't have to support wildcards because those are provided by the shell.</p>
+<div class="codehilite"><pre>$ ls *
+file1  file2  file3  filea  fileb  filec
+</pre></div>
+
+
+<p><span class='code'>ls</span> never sees the asterisk, just the files. But what if wildcards aren't sufficient for searching and the user needs regular expressions? <span class='code'>ls</span> doesn't have to provide those either, because the shell provides pipes (<span class='code'>|</span>), and <span class='code'>grep</span> provides regular expressions.</p>
+<div class="codehilite"><pre>$ ls | grep &#39;^.*[1-2]$&#39;
+file1
+file2
+</pre></div>
+
+
+<p><span class='code'>ls</span> doesn't have to worry about saving output to a file either, because that's also provided by the shell with <span class='code'>&gt;</span>.</p>
+<div class="codehilite"><pre>$ ls *[a-c] &gt; file1
+$ cat file1
+filea
+fileb
+filec
+</pre></div>
+
+
+<p>Now let's say the user wants big letters instead like those provided by <span class='code'>figlet</span>?</p>
+<div class="codehilite"><pre>$ figlet big text
+ _     _         _            _  
+| |__ (_) __ _  | |_ _____  _| |_
+| &#39;_ \| |/ _` | | __/ _ \ \/ / __|
+| |_) | | (_| | | ||  __/&gt;  &lt;| |_
+|_.__/|_|\__, |  \__\___/_/\_\\__|
+         |___/
+</pre></div>
+
+
+<p>Should <span class='code'>ls</span> provide it? No, because <span class='code'>figlet</span> will gladly provide it for <span class='code'>ls</span>.</p>
+<div class="codehilite"><pre>$ ls *[1-3] | figlet
+  __ _ _      _
+ / _(_) | ___/ |
+| |_| | |/ _ \ |
+|  _| | |  __/ |
+|_| |_|_|\___|_|
+
+  __ _ _      ____ 
+ / _(_) | ___|___ \
+| |_| | |/ _ \ __) |
+|  _| | |  __// __/
+|_| |_|_|\___|_____|
+
+  __ _ _      _____
+ / _(_) | ___|___ /
+| |_| | |/ _ \ |_ \
+|  _| | |  __/___) |
+|_| |_|_|\___|____/
+</pre></div>
+
+
+<p>Want ls to list files by a cow? Pipe it through <span class='code'>cowsay</span>.</p>
+<div class="codehilite"><pre>$ ls file[a-c] | cowsay
+ ___________________
+&lt; filea fileb filec &gt;
+ -------------------
+    \   ^__^
+     \  (oo)\_______
+        (__)\       )\/\
+            ||----w |
+            ||     ||
+</pre></div>
+
+
+<p>Wanna <span class='code'>rot13</span> it?</p>
+<div class="codehilite"><pre>$ ls | rot13
+svyr1
+svyr2
+svyr3
+svyrn
+svyro
+svyrp
+</pre></div>
+
+
+<p>Want the cow to <span class='code'>rot13</span> it?</p>
+<div class="codehilite"><pre>$ ls *[1-3] | rot13 | cowsay
+ ___________________
+&lt; svyr1 svyr2 svyr3 &gt;
+ -------------------
+    \   ^__^
+     \  (oo)\_______
+        (__)\       )\/\
+            ||----w |
+            ||     ||
+</pre></div>
+
+
+<p>Want to have a program where the cow tells you your fortune?</p>
+<div class="codehilite"><pre>$ cat &gt; cowfortune
+fortune | cowsay
+$ chmod +x cowfortune
+$ mv cowfortune ~/bin
+$ cowfortune
+ ______________________________________
+/ You look like a million dollars. All \
+\ green and wrinkled.                  /
+ --------------------------------------
+    \   ^__^
+     \  (oo)\_______
+        (__)\       )\/\
+            ||----w |
+            ||     ||
+</pre></div>
+
+
+<p>Do you get the idea? The UNIX philosophy to do one thing and do it well means that <span class='code'>ls</span> need not worry about every possible way to list files, and <span class='code'>figlet<span>, <span class='code'>cowsay</span> and <span class='code'>rot13</code> need not know anything about listing files.</p>
+<p><span class='code'>ls</span> is an exception however, since it is <em>the</em> most commonly used tool, therefore it provides some of its own conveniences like sorting, etc.</p>
+<p>If you think Apple ][ and Commodore 64 are funner than UNIX, you're an accountant or a gamer, not a hacker, and you should probably go back to /g/. </p>
+<h2 id="about">About</h2>
+<p>This was not written by me, but rather by an anonymous user on <a href="http://4chan.org/prog">4chan's progammming board</a>. The original can be found <a href="http://dis.4chan.org/read/prog/1317560358/13">here</a>. I got tired of explaining why UNIX's philosophy is so great, so I've been forwarding people to this page instead.</p>
+<p>I've only modified the original for legibility.</p>
+
+    
+
+   
+      </div>
+
+      <!-- Footer -->
+      <div id="footer">
+        <table>
+          <tr>
+            <td class="wq"><em>C-x C-c</em></td>
+            <td class="source"><em><a href="https://github.com/AleksandarMicovic/aleks.rs">view source</a></em></td>
+            <td class="cc"><a id="license" href="http://creativecommons.org/licenses/by-sa/3.0/us/" target="_blank"><img src="/static/images/cc-by-sa.svg" /></a></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

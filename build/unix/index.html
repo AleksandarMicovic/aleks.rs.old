@@ -12,35 +12,43 @@
 
       <!-- Header -->
       <div id="header">
-        <a id="title" href="{{ url_for('index') }}">aleks.rs</a>
+        <a id="title" href="/">aleks.rs</a>
 
 	<div id="navigation">
 	  <ul>
             <li>
-              <a href="{{ url_for('page', path='about') }}">About</a>
+              <a href="/about/">About</a>
             </li>
             <li>
-              <a href="{{ url_for('page', path='writings') }}">Writings</a>
+              <a href="/writings/">Writings</a>
             </li>
 	    <li>
-              <a href="{{ url_for('page', path='projects') }}">Projects</a>
+              <a href="/projects/">Projects</a>
             </li>
             <li>
-              <a href="{{ url_for('archive') }}">Archive</a>
+              <a href="/archive/">Archive</a>
             </li>
 	  </ul>
 	</div>
 
       </div>
          <div id="feed">
-          <a href="{{ url_for('recent_feed') }}"><img src="/static/images/global/feed.svg" /></a>
+          <a href="/recent.atom"><img src="/static/images/global/feed.svg" /></a>
         </div>
      
       <!-- Content -->
       <div id="content">
-        {% block content %}
+        
+    <h1>GNU/Linux and UNIX Collection</h1>
+ 
+    
 
-        {% endblock content %}   
+    <h2 id="philosophy">Philosophy</h2>
+<p><a href="/unix/the_unix_way/"><strong>The UNIX Way</strong></a></p>
+
+    
+
+   
       </div>
 
       <!-- Footer -->

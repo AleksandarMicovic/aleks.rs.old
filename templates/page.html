@@ -2,16 +2,22 @@
 
 {% block content %}
     <h1>{{ page.title }}</h1>
+ 
+    {% if page.type == 'blog' %}
     <div id="pageMeta">
       <em>by {{ page.author }}</em><br/>
-      <em>written {{ page.date }}{% if (page.updated != page.date) and page.updated %} (updated {{ page.updated }}){% endif %}</em>
+      <em>written {{ page.date }}</em>
+      {% if (page.updated != page.date) and page.updated %}<em>updated {{ page.updated }})</em>{% endif %}
     </div>
+    {% endif %}
 
     {{ page.html|safe }}
 
+    {% if page.type == 'blog' %}
     <div id="page_footer">
       <strong class="blue"><em>Thanks for reading!</em></strong><br/>
       <strong>Tags:</strong> [{% for tag in page.tags %}<a href="{{ url_for('tag', tag=tag) }}">{{ tag }}</a>{% if not loop.last %}, {% endif %}{% endfor %}]
     </div>
+    {% endif %}
 
 {% endblock %}

@@ -12,35 +12,44 @@
 
       <!-- Header -->
       <div id="header">
-        <a id="title" href="{{ url_for('index') }}">aleks.rs</a>
+        <a id="title" href="/">aleks.rs</a>
 
 	<div id="navigation">
 	  <ul>
             <li>
-              <a href="{{ url_for('page', path='about') }}">About</a>
+              <a href="/about/">About</a>
             </li>
             <li>
-              <a href="{{ url_for('page', path='writings') }}">Writings</a>
+              <a href="/writings/">Writings</a>
             </li>
 	    <li>
-              <a href="{{ url_for('page', path='projects') }}">Projects</a>
+              <a href="/projects/">Projects</a>
             </li>
             <li>
-              <a href="{{ url_for('archive') }}">Archive</a>
+              <a href="/archive/">Archive</a>
             </li>
 	  </ul>
 	</div>
 
       </div>
          <div id="feed">
-          <a href="{{ url_for('recent_feed') }}"><img src="/static/images/global/feed.svg" /></a>
+          <a href="/recent.atom"><img src="/static/images/global/feed.svg" /></a>
         </div>
      
       <!-- Content -->
       <div id="content">
-        {% block content %}
+        
 
-        {% endblock content %}   
+  <h2>Hello!</h2>
+  <p>My name is Aleksandar Micovic, and this is my little corner of the Internet. I have a degree in Computer Science from the University of Toronto, and I also happen to live here as well. I spend a lot of my spare time coding, and consistently dreaming about monads and burritos. I have not spoken to a psychologist yet. Apart from code, I enjoy cooking, writing (read: ranting) and <a href="/about/#lists">making lists</a>.
+
+  <h2>Newest Posts</h2>
+  
+    <a href="/blog/hello-world/">Hello World</a>
+    <em class="clearBottom">(2013-01-27)</em><br/>
+  
+
+   
       </div>
 
       <!-- Footer -->

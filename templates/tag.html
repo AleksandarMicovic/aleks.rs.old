@@ -4,6 +4,20 @@
 
   <h1>Pages tagged "{{ tag }}"</h1>
 
-  {% include "list_of_pages.html" %}
+  <ul class="list_of_pages">
+    {% for page in pages %}
+    <li>
+      <span class="large blue">{{ page.date }}</span> — 
+      <a href="{{ url_for('page', path=page.path) }}" class="large">
+        {{ page.title }}
+      </a>
+      {% if full %}
+      <br/>
+      <em class="small">{{ page.summary }}</em>
+      [{% for tag in page.tags %}<a href="{{ url_for('tag', tag=tag) }}">{{ tag }}</a>{% if not loop.last %}, {% endif %}{% endfor %}]
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ul>
 
 {% endblock %}
