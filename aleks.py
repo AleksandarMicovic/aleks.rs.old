@@ -46,6 +46,11 @@ def tag(tag):
 
 @app.route("/list/<string:item>/")
 def collection(item):
+    # Normally, this is super dumb, but since I own the local DB and it itself
+    # holds many tables I plan on rendering on my site, using only one function
+    # to render multiple tables is elegant. Doubly so, since this is only run 
+    # once to generate the static page. So far, I only have books.
+
     g.db = sqlite3.connect('db/db')
     items = query_db('select * from ' + item)
     g.db.close()
