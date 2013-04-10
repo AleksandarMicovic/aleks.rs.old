@@ -9,4 +9,4 @@ updated: 2013-03-29
 
 ## Philosophy
 
-[**The UNIX Way**](/unix/the_unix_way/)
+[The UNIX Way](/unix/the_unix_way/)

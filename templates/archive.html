@@ -3,21 +3,27 @@
 {% block content %}
 
   <h1>Archive</h1>
-  
+
+  <h2 id='blog-posts'>Blog Posts</h2>
   <ul class="list_of_pages">
     {% for page in pages %}
     <li>
-      <span class="large blue">{{ page.date }}</span> — 
-      <a href="{{ url_for('page', path=page.path) }}" class="large">
+      <span>{{ page.date }}</span> — 
+      <a href="{{ url_for('page', path=page.path) }}">
         {{ page.title }}
       </a>
-      {% if full %}
       <br/>
       <em class="small">{{ page.summary }}</em>
       [{% for tag in page.tags %}<a href="{{ url_for('tag', tag=tag) }}">{{ tag }}</a>{% if not loop.last %}, {% endif %}{% endfor %}]
-      {% endif %}
     </li>
     {% endfor %}
+  </ul>
+
+  <h2 id='lists'>Lists</h2>
+  <ul class="list_of_pages">
+    <li>
+      <a href="{{ url_for('collection', item='books') }}">My reading list, and books I've read</a>
+    </li>
   </ul>
 
 {% endblock %}

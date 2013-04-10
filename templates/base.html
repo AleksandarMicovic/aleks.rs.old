@@ -5,6 +5,7 @@
     <link rel="stylesheet" type="text/css" href="/static/css/reset.css" />
     <link rel="stylesheet" type="text/css" href="/static/css/screen.css" />
     <link rel="stylesheet" type="text/css" href="/static/css/pygments.css" />
+    <script type="text/javascript" src="/static/js/jquery.js"></script>
     <title>aleks.rs</title>
   </head>
   <body>
@@ -17,16 +18,16 @@
 	<div id="navigation">
 	  <ul>
             <li>
-              <a href="{{ url_for('page', path='about') }}">About</a>
-            </li>
-            <li>
-              <a href="{{ url_for('page', path='writings') }}">Writings</a>
+              <a href="{{ url_for('archive') }}">Archive</a>
             </li>
 	    <li>
               <a href="{{ url_for('page', path='projects') }}">Projects</a>
             </li>
             <li>
-              <a href="{{ url_for('archive') }}">Archive</a>
+              <a href="{{ url_for('page', path='writings') }}">Writings</a>
+            </li>
+            <li>
+              <a href="{{ url_for('page', path='about') }}">About</a>
             </li>
 	  </ul>
 	</div>
@@ -47,7 +48,7 @@
       <div id="footer">
         <table>
           <tr>
-            <td class="wq"><em>C-x C-c</em></td>
+            <td class="wq">C-x C-c</td>
             <td class="source"><em><a href="https://github.com/AleksandarMicovic/aleks.rs">view source</a></em></td>
             <td class="cc"><a id="license" href="http://creativecommons.org/licenses/by-sa/3.0/us/" target="_blank"><img src="/static/images/cc-by-sa.svg" /></a></td>
           </tr>

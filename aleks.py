@@ -1,11 +1,12 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, g
 from flask_flatpages import FlatPages
 from werkzeug.contrib.atom import AtomFeed
 from flask_frozen import Freezer
 import sys
+import sqlite3
 
 DEBUG = True
 FLATPAGES_AUTO_RELOAD = DEBUG
@@ -15,6 +16,16 @@ app = Flask(__name__)
 app.config.from_object(__name__)
 pages = FlatPages(app)
 freezer = Freezer(app)
+
+# Helpers
+
+def query_db(query, args=(), one=False):
+    cur = g.db.execute(query, args)
+    rv = [dict((cur.description[idx][0], value)
+               for idx, value in enumerate(row)) for row in cur.fetchall()]
+    return (rv[0] if rv else None) if one else rv
+
+# Routing
 
 @app.route("/")
 def index():
@@ -26,12 +37,19 @@ def index():
 def archive():
     blog_posts = [page for page in pages if 'blog' == page.meta['type']]
     posts = sorted(blog_posts, key=lambda a: a.meta['date'], reverse=True)
-    return render_template("archive.html", pages=posts, full=True)
+    return render_template("archive.html", pages=posts)
 
 @app.route("/tag/<string:tag>/")
 def tag(tag):
     tagged = [page for page in pages if tag in page.meta.get('tags', [])]
-    return render_template("tag.html", pages=tagged, tag=tag, full=False)
+    return render_template("tag.html", pages=tagged, tag=tag)
+
+@app.route("/list/<string:item>/")
+def collection(item):
+    g.db = sqlite3.connect('db/db')
+    items = query_db('select * from ' + item)
+    g.db.close()
+    return render_template("lists/books.html", items=items)
 
 @app.route("/<path:path>/")
 def page(path):

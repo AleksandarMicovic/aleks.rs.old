@@ -4,22 +4,11 @@ author: Aleksandar Micovic
 type: blog
 tags: [python, flask, jinja2]
 date: 2013-01-27
-updated: 2013-01-27
-
-## Why
-
-I've always had a blog or website in some form or another since 2004, but I always ended up restarting it, after messing it up in some inexplicable way. A series of blog posts apologizing for not posting more or something. I don't know; it was weird. Needless to say, it's definitely my goal to never have to “restart” again. I'd like to keep this going for a very long time, so that in 20 years I will have a treasure trove of thoughts online.
-
-Another reason is that I've always loved writing, and minimalism. The latter especially. So much so that I feel like punching a kitten whenever I see something like this:
-
-![An ad-littered layout.](/static/images/blog/hello-world/ad-littered-website.png)
-
-So with this first post, I vow to always focus on the content!
-
+updated: 2013-04-09
 
 ## The stack
 
-Minimalism on the outside is beautiful, but it's just as pretty on the inside. One of my major gripes with Wordpress was that it was just *big*. So big that it does more than just blogging. This is thanks to the dozens of php files scattered everywhere that you don't really understand—unless you take the time to read them. If you don't care about that sort of thing and just want a blog, I can understand using Wordpress. But god help you should something break, or you'd like a feature that can't be provided with a plugin (and even if it could, you'd have to read the plugin's source to understand that too!).
+Minimalism on the outside is beautiful, but it's just as pretty on the inside. One of my major gripes with Wordpress (my previous blogging platform) was that it was just *big*. So big that it did more than just blogging. This is thanks to the dozens of php files scattered everywhere that you don't really understand—unless you take the time to read them. If you don't care about that sort of thing and just want a blog, I can understand using Wordpress. But god help you should something break, or you'd like a feature that can't be provided with a plugin (and even if it could, you'd have to read the plugin's source to understand that too!).
 
 I have a physical aversion to bloat, which is why I decided to go with a statically generated solution. The advantages are hard to beat:
 
@@ -31,6 +20,9 @@ So, the stack? I use a Python micro framework called [Flask](http://flask.pocoo.
 
 That alone was pretty sweet, but the final step was reading blog posts from files locally. It wouldn't matter how inefficient this had the potential of being since it was only being run once to generate the blog. However, I also wanted Markdown and Pygments to really spice things up, and while I could have implemented this myself, I did find a very thin wrapper called Flask-FlatPages that basically combined all of these things for me.
 
+So, to add onto my list of advantages, I get something that most statically-generated websites don't get:
+
+ * The workflow of a *proper* web framework.
 
 ## Code
 

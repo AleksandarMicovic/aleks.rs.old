@@ -2,7 +2,7 @@ title: The Unix Way
 summary: A collection of articles and interesting things.
 author: Aleksandar Micovic
 type: page
-tags: []
+tags: [unix, philosophy]
 date: 2013-03-29
 updated: 2013-03-30
 
@@ -76,7 +76,7 @@ Should <span class='code'>ls</span> provide it? No, because <span class='code'>f
     |_| |_|_|\___|____/
 
 
-Want ls to list files by a cow? Pipe it through <span class='code'>cowsay</span>.
+Want <span class='code'>ls</span> to list files by a cow? Pipe it through <span class='code'>cowsay</span>.
 
     $ ls file[a-c] | cowsay
      ___________________

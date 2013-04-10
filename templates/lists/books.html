@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  <script type="text/javascript" src="/static/js/books.js"></script>
+
+  <h1>Books</h1>
+
+  <table class='books'>
+    <thead>
+      <tr>
+	<th>Title</th>
+	<th>Author</th>
+	<th>Rating</th>
+	<th>Type</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for book in items|sort(attribute='title')|sort(attribute='read') %}
+    <tr class="meta {{ loop.cycle('odd', 'even') }}">
+      <td class="pad_right">{{ book.title }}</td>
+      <td class="nowrap pad_right">{{ book.author }}</td>
+      <td class="nowrap pad_right">
+	{% if book.rating %}
+	  {% if book.rating == 5 %}
+	    ★ ★ ★ ★ ★
+	  {% elif book.rating == 4 %}
+	    ★ ★ ★ ★ ☆
+	  {% elif book.rating == 3 %}
+	    ★ ★ ★ ☆ ☆
+	  {% elif book.rating == 2 %}
+	    ★ ★ ☆ ☆ ☆
+	  {% elif book.rating == 1 %}
+	    ★ ☆ ☆ ☆ ☆
+	  {% elif book.rating == 0 %}
+	    ☆ ☆ ☆ ☆ ☆
+	  {% endif %}
+	{% else %}
+	Reading list
+	{% endif %}
+      </td>
+      <td class="centre">F</td>
+    </tr>
+    <tr class="notes {{ loop.cycle('odd', 'even') }}">
+      <td colspan="4"><strong>Notes:</strong> {% if book.notes %}{{ book.notes }}{% else %}Nothing recorded!{% endif %}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+
+  <h2>About</h2>
+
+  <p>I've only just started this list, and due to its nature, it's a little sparse at the moment.</p>
+
+{% endblock %}

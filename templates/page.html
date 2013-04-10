@@ -5,15 +5,15 @@
  
     {% if page.type == 'blog' %}
     <div id="pageMeta">
-      <em>by {{ page.author }}</em><br/>
-      <em>written {{ page.date }}</em>
-      {% if (page.updated != page.date) and page.updated %}<em>updated {{ page.updated }})</em>{% endif %}
+      <em class="light small">by {{ page.author }}</em><br/>
+      <em class="light small">written {{ page.date }}</em>
+      {% if (page.updated != page.date) and page.updated %}<em class="light small"> and updated {{ page.updated }}</em>{% endif %}
     </div>
     {% endif %}
 
     {{ page.html|safe }}
 
-    {% if page.type == 'blog' %}
+    {% if page.tags %}
     <div id="page_footer">
       <strong class="blue"><em>Thanks for reading!</em></strong><br/>
       <strong>Tags:</strong> [{% for tag in page.tags %}<a href="{{ url_for('tag', tag=tag) }}">{{ tag }}</a>{% if not loop.last %}, {% endif %}{% endfor %}]
