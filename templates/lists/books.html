@@ -39,7 +39,7 @@
 	Reading list
 	{% endif %}
       </td>
-      <td class="centre">F</td>
+      <td class="centre">{{ book.type }}</td>
     </tr>
     <tr class="notes {{ loop.cycle('odd', 'even') }}">
       <td colspan="4"><strong>Notes:</strong> {% if book.notes %}{{ book.notes }}{% else %}Nothing recorded!{% endif %}</td>
