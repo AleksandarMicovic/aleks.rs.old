@@ -34,7 +34,7 @@ It's very easy to get in touch with me. Here are some ways:
 
 ## Other
 
-[My reading list, and books I've read](/list/books/)
+[My reading list, and books I've read](/lists/books/)
 
 [GNU/Linux and UNIX stuff](/unix/)
 

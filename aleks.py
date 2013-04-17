@@ -44,7 +44,7 @@ def tag(tag):
     tagged = [page for page in pages if tag in page.meta.get('tags', [])]
     return render_template("tag.html", pages=tagged, tag=tag)
 
-@app.route("/list/<string:item>/")
+@app.route("/lists/<string:item>/")
 def collection(item):
     # Normally, this is super dumb, but since I own the local DB and it itself
     # holds many tables I plan on rendering on my site, using only one function
