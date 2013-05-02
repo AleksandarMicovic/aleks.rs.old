@@ -12,37 +12,40 @@
 	<th>Title</th>
 	<th>Author</th>
 	<th>Rating</th>
-	<th>Type</th>
+	<th>F/NF</th>
       </tr>
     </thead>
     <tbody>
-    {% for book in items|sort(attribute='title')|sort(attribute='read') %}
+
+    <!-- Books that are on my reading list should be first, and then we sort by title sorted by the title. -->
+
+    {% for book in items|sort(attribute='title')|sort(attribute='read_rating') %}
     <tr class="meta {{ loop.cycle('odd', 'even') }}">
       <td class="pad_right">{{ book.title }}</td>
       <td class="nowrap pad_right">{{ book.author }}</td>
       <td class="nowrap pad_right">
-	{% if book.rating %}
-	  {% if book.rating == 5 %}
+	{% if book.read_rating != -1 %}
+	  {% if book.read_rating == 5 %}
 	    ★ ★ ★ ★ ★
-	  {% elif book.rating == 4 %}
+	  {% elif book.read_rating == 4 %}
 	    ★ ★ ★ ★ ☆
-	  {% elif book.rating == 3 %}
+	  {% elif book.read_rating == 3 %}
 	    ★ ★ ★ ☆ ☆
-	  {% elif book.rating == 2 %}
+	  {% elif book.read_rating == 2 %}
 	    ★ ★ ☆ ☆ ☆
-	  {% elif book.rating == 1 %}
+	  {% elif book.read_rating == 1 %}
 	    ★ ☆ ☆ ☆ ☆
-	  {% elif book.rating == 0 %}
+	  {% elif book.read_rating == 0 %}
 	    ☆ ☆ ☆ ☆ ☆
 	  {% endif %}
 	{% else %}
 	Reading list
 	{% endif %}
       </td>
-      <td class="centre">{{ book.type }}</td>
+      <td class="">{{ book.type }}</td>
     </tr>
     <tr class="notes {{ loop.cycle('odd', 'even') }}">
-      <td colspan="4"><strong>Notes:</strong> {% if book.notes %}{{ book.notes }}{% else %}Nothing recorded!{% endif %}</td>
+      <td colspan="4"><strong>Notes:</strong> {% if book.read == "0" %}Need to read the book first!{% else %}{% if book.notes %}{{ book.notes }}{% else %}Nothing recorded!{% endif %}{% endif %}</td>
     </tr>
     {% endfor %}
     </tbody>
@@ -51,5 +54,6 @@
   <h2>About</h2>
 
   <p>I've only just started this list, and due to its nature, it's a little sparse at the moment.</p>
+  <p>Some books also have notes associated with them. Click the book to read its respective note. Currently, the majority of the books on this list don't have a note, and this is because they've been read so long ago that they aren't fresh on my mind anymore. As I reread some of the stuff on this list, I'll be sure to put some of my thoughts down.</p>
 
 {% endblock %}
