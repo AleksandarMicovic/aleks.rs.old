@@ -11,6 +11,7 @@ import sqlite3
 DEBUG = True
 FLATPAGES_AUTO_RELOAD = DEBUG
 FLATPAGES_EXTENSION = '.md'
+FLATPAGES_MARKDOWN_EXTENSIONS = ['codehilite(guess_lang=False)', 'headerid']
 
 app = Flask(__name__)
 app.config.from_object(__name__)
