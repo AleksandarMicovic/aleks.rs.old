@@ -19,7 +19,7 @@
 
     <!-- Books that are on my reading list should be first, and then we sort by title sorted by the title. -->
 
-    {% for book in items|sort(attribute='title')|sort(attribute='read_rating') %}
+    {% for book in items|sort(attribute='title') %}
     <tr class="meta {{ loop.cycle('odd', 'even') }}">
       <td class="pad_right">{{ book.title }}</td>
       <td class="nowrap pad_right">{{ book.author }}</td>
