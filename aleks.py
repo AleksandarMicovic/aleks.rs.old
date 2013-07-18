@@ -6,7 +6,6 @@ from flask_flatpages import FlatPages
 from werkzeug.contrib.atom import AtomFeed
 from flask_frozen import Freezer
 import sys
-import sqlite3
 
 DEBUG = True
 FLATPAGES_AUTO_RELOAD = DEBUG
@@ -17,14 +16,6 @@ app = Flask(__name__)
 app.config.from_object(__name__)
 pages = FlatPages(app)
 freezer = Freezer(app)
-
-# Helpers
-
-def query_db(query, args=(), one=False):
-    cur = g.db.execute(query, args)
-    rv = [dict((cur.description[idx][0], value)
-               for idx, value in enumerate(row)) for row in cur.fetchall()]
-    return (rv[0] if rv else None) if one else rv
 
 # Routing
 
@@ -47,14 +38,12 @@ def tag(tag):
 
 @app.route("/lists/<string:item>/")
 def collection(item):
-    # Normally, this is super dumb, but since I own the local DB and it itself
-    # holds many tables I plan on rendering on my site, using only one function
-    # to render multiple tables is elegant. Doubly so, since this is only run 
-    # once to generate the static page. So far, I only have books.
+    open_file = open('db/' + item, 'r')
+    content = open_file.read().decode('utf-8')
+    open_file.close()
 
-    g.db = sqlite3.connect('db/db')
-    items = query_db('select * from ' + item)
-    g.db.close()
+    items = [line.split('|') for line in content.split('\n')]
+
     return render_template("lists/books.html", items=items)
 
 @app.route("/<path:path>/")

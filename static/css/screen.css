@@ -277,25 +277,11 @@ pre {
 .books th {
     font-weight: bold;
     border-bottom: 2px solid #666666;
+    cursor: pointer;
 }
 
 .books > tbody > tr:hover {
-    cursor: pointer;
     background-color: #ffffcc;
-}
-
-.books > tbody > tr:hover + .notes {
-    background-color: #ffffcc;
-}
-
-/* TODO: No such thing as a previous sibling, so we when notes
-   about a book are hovered over, the previous element loses
-   its highlight. CSS selector v4 fixes this, but it isn't
-   supported anywhere. Right now, I'm fixing this with a bit of
-   javascript.*/
-
-.books .notes {
-    display: none;
 }
 
 .books .odd {

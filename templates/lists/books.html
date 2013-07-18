@@ -2,50 +2,28 @@
 
 {% block content %}
 
+  <script type="text/javascript" src="/static/js/jquery.tablesorter.min.js"></script>
   <script type="text/javascript" async="true" src="/static/js/books.js"></script>
 
   <h1>Books</h1>
 
-  <table class='books'>
+  <table class="books" id="books">
     <thead>
       <tr>
 	<th>Title</th>
 	<th>Author</th>
-	<th>Rating</th>
-	<th>F/NF</th>
+	<th>Status</th>
       </tr>
     </thead>
     <tbody>
 
     <!-- Books that are on my reading list should be first, and then we sort by title sorted by the title. -->
 
-    {% for book in items|sort(attribute='title') %}
+    {% for book in items|sort|sort(attribute=2) %}
     <tr class="meta {{ loop.cycle('odd', 'even') }}">
-      <td class="pad_right">{{ book.title }}</td>
-      <td class="nowrap pad_right">{{ book.author }}</td>
-      <td class="nowrap pad_right">
-	{% if book.read_rating != -1 %}
-	  {% if book.read_rating == 5 %}
-	    ★ ★ ★ ★ ★
-	  {% elif book.read_rating == 4 %}
-	    ★ ★ ★ ★ ☆
-	  {% elif book.read_rating == 3 %}
-	    ★ ★ ★ ☆ ☆
-	  {% elif book.read_rating == 2 %}
-	    ★ ★ ☆ ☆ ☆
-	  {% elif book.read_rating == 1 %}
-	    ★ ☆ ☆ ☆ ☆
-	  {% elif book.read_rating == 0 %}
-	    ☆ ☆ ☆ ☆ ☆
-	  {% endif %}
-	{% else %}
-	Reading list
-	{% endif %}
-      </td>
-      <td class="">{{ book.type }}</td>
-    </tr>
-    <tr class="notes {{ loop.cycle('odd', 'even') }}">
-      <td colspan="4"><strong>Notes:</strong> {% if book.read == "0" %}Need to read the book first!{% else %}{% if book.notes %}{{ book.notes }}{% else %}Nothing recorded!{% endif %}{% endif %}</td>
+      <td class="pad_right">{{ book[0]|trim }}</td>
+      <td class="nowrap pad_right">{{ book[1]|trim }}</td>
+      <td class="nowrap pad_right">{{ book[2]|trim }}</td>
     </tr>
     {% endfor %}
     </tbody>
