@@ -12,6 +12,7 @@
       <tr>
 	<th>Title</th>
 	<th>Author</th>
+        <th>Lang.</th>
 	<th>Status</th>
       </tr>
     </thead>
@@ -19,11 +20,18 @@
 
     <!-- Books that are on my reading list should be first, and then we sort by title sorted by the title. -->
 
-    {% for book in items|sort|sort(attribute=2) %}
+    {% for book in items|sort %}
     <tr class="meta {{ loop.cycle('odd', 'even') }}">
       <td class="pad_right">{{ book[0]|trim }}</td>
       <td class="nowrap pad_right">{{ book[1]|trim }}</td>
-      <td class="nowrap pad_right">{{ book[2]|trim }}</td>
+      <td class="nowrap pad_right">
+        {% if book[3]|trim == "English" %}
+          ENG
+        {% elif book[3]|trim == "Serbian" %}
+          SRB
+        {% endif %}
+      </td>
+      <td class="nowrap">{{ book[2]|trim }}</td>
     </tr>
     {% endfor %}
     </tbody>
