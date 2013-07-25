@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $("#books").tablesorter({
+    $(".books").tablesorter({
         cssAsc: "large",
         cssDesc: "large"
     }); 

@@ -7,35 +7,57 @@
 
   <h1>Books</h1>
 
-  <table class="books" id="books">
+  <h2>My current reading list</h2>
+
+  <table class="books">
     <thead>
       <tr>
 	<th>Title</th>
 	<th>Author</th>
-        <th>Lang.</th>
-	<th>Status</th>
+        <th>Language</th>
       </tr>
     </thead>
     <tbody>
 
-    <!-- Books that are on my reading list should be first, and then we sort by title sorted by the title. -->
-
     {% for book in items|sort %}
+    {% if book[2]|trim != "finished" %}
     <tr class="meta {{ loop.cycle('odd', 'even') }}">
       <td class="pad_right">{{ book[0]|trim }}</td>
       <td class="nowrap pad_right">{{ book[1]|trim }}</td>
-      <td class="nowrap pad_right">
-        {% if book[3]|trim == "English" %}
-          ENG
-        {% elif book[3]|trim == "Serbian" %}
-          SRB
-        {% endif %}
-      </td>
-      <td class="nowrap">{{ book[2]|trim }}</td>
+      <td class="nowrap pad_right">{{ book[3]|trim }}</td>
     </tr>
+    {% endif %}
     {% endfor %}
     </tbody>
   </table>
+
+  <br/>
+
+  <h2>Books I've read</h2>
+
+  <table class="books">
+    <thead>
+      <tr>
+	<th>Title</th>
+	<th>Author</th>
+        <th>Language</th>
+      </tr>
+    </thead>
+    <tbody>
+
+    {% for book in items|sort %}
+    {% if book[2]|trim == "finished" %}
+    <tr class="meta {{ loop.cycle('odd', 'even') }}">
+      <td class="pad_right">{{ book[0]|trim }}</td>
+      <td class="nowrap pad_right">{{ book[1]|trim }}</td>
+      <td class="nowrap pad_right">{{ book[3]|trim }}</td>
+    </tr>
+    {% endif %}
+    {% endfor %}
+    </tbody>
+  </table>
+
+  <br/>
 
   <h2>About</h2>
 
