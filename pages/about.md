@@ -12,9 +12,7 @@ header_forceid: On
 
 If you're looking for my CV, you can find it [here](/static/resume.pdf).
 
-My name is Aleksandar Micovic, and this is my little corner of the Internet. I have a degree in Computer Science from the University of Toronto, and I also happen to live in said city as well. I spend a lot of my spare time coding, and consistently dreaming about monads and burritos. I have not spoken to a psychologist yet.
-
-This page is a catch-all for all minutiae and miscellanea. Mostly stuff that doesn't fit into any other category, but stuff I still want to share.
+My name is Aleksandar Micovic, and this is my little corner of the Internet. I have a degree in Computer Science from the University of Toronto, and work as a software engineer in Belgrade, Serbia. I spend a lot of my spare time coding, and consistently dreaming about monads and burritos. I have not spoken to a psychologist yet.
 
 
 ## Contact
@@ -29,7 +27,7 @@ It's very easy to get in touch with me. Here are some ways:
 
 **Github:** [AleksandarMicovic](https://github.com/aleksandarmicovic)
 
-**IRC:** I go under "aleksm" on Freenode, and "meta" on Rizon.
+**IRC:** I go under "aleksm" on Freenode, "aleks" on Snoonet, and "meta" on Rizon.
 
 
 ## Other
@@ -37,4 +35,3 @@ It's very easy to get in touch with me. Here are some ways:
 [My reading list, and books I've read](/lists/books/)
 
 [GNU/Linux and UNIX stuff](/unix/)
-
