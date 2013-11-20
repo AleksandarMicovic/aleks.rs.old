@@ -6,7 +6,7 @@ tags: [python, flask, jinja2]
 date: 2013-01-27
 updated: 2013-04-09
 
-## The stack
+### The stack
 
 Minimalism on the outside is beautiful, but it's just as pretty on the inside. One of my major gripes with Wordpress (my previous blogging platform) was that it was just *big*. So big that it did more than just blogging. This is thanks to the dozens of php files scattered everywhere that you don't really understand—unless you take the time to read them. If you don't care about that sort of thing and just want a blog, I can understand using Wordpress. But god help you should something break, or you'd like a feature that can't be provided with a plugin (and even if it could, you'd have to read the plugin's source to understand that too!).
 
@@ -24,7 +24,7 @@ So, to add onto my list of advantages, I get something that most statically-gene
 
  * The workflow of a *proper* web framework.
 
-## Code
+### Code
 
 First, we import everything and set things up:
 
