@@ -22,8 +22,8 @@ freezer = Freezer(app)
 @app.route("/")
 def index():
     posts = [page for page in pages if 'blog' == page.meta['type']]
-    sorted_posts = sorted(posts, key=lambda a: a.meta['date'], reverse=True)[:3]
-    return render_template("index.html", pages=sorted_posts)
+    newest = sorted(posts, key=lambda a: a.meta['date'], reverse=True)[:1][0]
+    return render_template("index.html", post=newest)
 
 @app.route("/archive/")
 def archive():
