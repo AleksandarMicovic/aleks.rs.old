@@ -1,13 +1,12 @@
 title: The Unix Way
-summary: A collection of articles and interesting things.
-author: Aleksandar Micovic
-type: page
-tags: [unix, philosophy]
+author: Aleksandar Mićović
+type: content
+tags: []
 date: 2013-03-29
-updated: 2013-03-30
+updated: 2013-11-29
 
 
-## So we begin...
+### So we begin...
 
 <span class='code'>ls</span> does one thing and does it well. It lists files.
 
@@ -134,7 +133,7 @@ Do you get the idea? The UNIX philosophy to do one thing and do it well means th
 If you think Apple ][ and Commodore 64 are funner than UNIX, you're an accountant or a gamer, not a hacker, and you should probably go back to /g/. 
 
 
-## About
+### About
 
 This was not written by me, but rather by an anonymous user on [4chan's progammming board](http://4chan.org/prog). The original can be found [here](http://dis.4chan.org/read/prog/1317560358/13). I got tired of explaining why UNIX's philosophy is so great, so I've been forwarding people to this page instead.
 

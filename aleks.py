@@ -17,17 +17,16 @@ app.config.from_object(__name__)
 pages = FlatPages(app)
 freezer = Freezer(app)
 
-# Routing
 
 @app.route("/")
 def index():
-    posts = [page for page in pages if 'blog' == page.meta['type']]
+    posts = [page for page in pages if 'content' == page.meta['type']]
     newest = sorted(posts, key=lambda a: a.meta['date'], reverse=True)[:1][0]
-    return render_template("index.html", post=newest)
+    return render_template("page.html", page=newest)
 
 @app.route("/archive/")
 def archive():
-    blog_posts = [page for page in pages if 'blog' == page.meta['type']]
+    blog_posts = [page for page in pages if 'content' == page.meta['type']]
     posts = sorted(blog_posts, key=lambda a: a.meta['date'], reverse=True)
     return render_template("archive.html", pages=posts)
 
@@ -51,22 +50,6 @@ def page(path):
     page = pages.get_or_404(path)
     return render_template("page.html", page=page)
 
-@app.route('/recent.atom')
-def recent_feed():
-    url = "aleks.rs"
-    feed = AtomFeed(u"aleks.rs — Recent Articles", feed_url=url, url=url)
-    all_pages = [page for page in pages]
-    sorted_pages = sorted(all_pages, key=lambda a: a.meta['date'], reverse=True)[:5]
-
-    for page in sorted_pages:
-        feed.add(unicode(page.meta.get('title')),
-                 unicode(page.html),
-                 content_type='html',
-                 author=page.meta.get('author'),
-                 url=url_for('page', path=page.path),
-                 updated=page.meta.get('updated'),
-                 published=page.meta.get('date'))
-    return feed.get_response()
 
 if __name__ == "__main__":
     if len(sys.argv) > 1 and sys.argv[1] == "build":

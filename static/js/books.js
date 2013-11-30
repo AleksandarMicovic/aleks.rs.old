@@ -1,6 +1,6 @@
 $(document).ready(function() {
     $(".books").tablesorter({
-        cssAsc: "large",
-        cssDesc: "large"
+        cssAsc: "header_ascending",
+        cssDesc: "header_descending"
     }); 
 });

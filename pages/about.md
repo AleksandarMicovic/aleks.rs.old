@@ -1,21 +1,19 @@
 title: About
-summary: Just the about page!
-author: Aleksandar Micovic
-type: page
+author: Aleksandar Mićović
+type: navigation
 tags: []
 date: 2013-03-29
-updated: 2013-03-29
-header_forceid: On
+updated: 2013-11-29
 
 
-## Me
+### Me
 
 If you're looking for my CV, you can find it [here](/static/resume.pdf).
 
 My name is Aleksandar Micovic, and this is my little corner of the Internet. I have a degree in Computer Science from the University of Toronto, and work as a software engineer in Belgrade, Serbia. I spend a lot of my spare time coding, and consistently dreaming about monads and burritos. I have not spoken to a psychologist yet.
 
 
-## Contact
+### Contact
 
 It's very easy to get in touch with me. Here are some ways:
 
@@ -30,7 +28,7 @@ It's very easy to get in touch with me. Here are some ways:
 **IRC:** I go under "aleksm" on Freenode, "aleks" on Snoonet, and "meta" on Rizon.
 
 
-## Other
+### Other
 
 [My reading list, and books I've read](/lists/books/)
 

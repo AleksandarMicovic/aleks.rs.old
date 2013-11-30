@@ -1,13 +1,11 @@
 @font-face {
-    font-family: RobotoCondensedRegular;
-    font-style: normal;
-    font-weight: 400;
-    src: local('Roboto Condensed Regular'), url(/static/fonts/RobotoCondensed-Regular.ttf) format('truetype');
+    font-family: RobotoLight;
+    src: url(/static/fonts/Roboto-Light.ttf);
 }
 
 @font-face {
-    font-family: RobotoLight;
-    src: url(/static/fonts/Roboto-Light.ttf);
+    font-family: RobotoItalic;
+    src: url(/static/fonts/Roboto-LightItalic.ttf);
 }
 
 @font-face {
@@ -24,8 +22,6 @@
     font-family: DejaVuSansMono;
     src: url(/static/fonts/DejaVuSansMono.ttf);
 }
-
-body {font-family:RobotoCondensedRegular;}
 
 @media screen and (max-width: 65em) {
     #title {
@@ -107,10 +103,16 @@ a:visited {
     color: #000000;
 }
 
+em  {
+    font-family: RobotoItalic;
+}
+
 #content > p {
     text-indent: 1.75em;
-    line-height:1.25em;
+    line-height:1.5em;
     letter-spacing: 0.004em;
+    text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.1);
+    margin-bottom: 0.75em;
 }
 
 #content > h2 {
@@ -118,20 +120,40 @@ a:visited {
     font-size: 2em;
     text-align: center;
     margin: 0.5em 0 0.5em 0;
+    text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.5);
 }
 
 #content > h3 {
     font-family: RobotoCondensedBold;
     font-size: 1.75em;
     margin-bottom: 0.25em;
+    margin-top: 0.75em;
+    text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.25);
 }
 
-#pageMeta {
-    text-align: center;
-    font-size: 0.85em;
-    color: #999999;
-    margin-bottom: 3.5em;
+#content h4 {
+    font-family: RobotoCondensedBold;
+    font-size: 1.5em;
+    text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.25);
 }
+
+#page_footer {
+    text-align: center;
+    text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.25);
+    margin-bottom: 1.75em;
+}
+
+#page_footer > h4 {
+    margin-bottom: 0.5em;
+}
+
+#page_meta {
+    text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.25);
+    text-align: center;
+    font-size: 0.9em;
+    margin-bottom: 1em;
+}
+
 
 #footer {
     clear: both;
@@ -142,6 +164,7 @@ h1 {
     font-family: RobotoCondensedBoldItalic;
     text-align: left;
     padding-left: 0.25em;
+    text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.5);
 }
 
 h1 a {
@@ -157,6 +180,7 @@ h1 a {
 #navigation > ul > li {
     display: inline;
     padding: 0 0.5em 0 0.5em;
+    text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.25);
 }
 
 #navigation a {
@@ -167,16 +191,13 @@ h1 a {
     color: #08abff;
 }
 
-#content p {
-    margin-bottom: 0.5em;
-}
-
 #content ul {
     margin: 1em 0 1em 4em;
 }
 
 #content ul li {
     margin-bottom: 0.5em;
+    text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.25);
 }
 
 #footer {
@@ -184,6 +205,7 @@ h1 a {
     line-height: 3em;
     margin-top: 1em;
     font-family: RobotoCondensedBoldItalic;
+    text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.25);
 }
 
 #footer a {
@@ -218,4 +240,45 @@ h1 a {
 #footer td.cc {
     padding-top: 0.5em;
     text-align: right;
+}
+
+.books {
+    margin-top: 1em;
+    width: 95%;
+}
+
+.books th {
+    font-family: RobotoCondensedBold;
+    cursor: pointer;
+    border-bottom: 3px solid rgb(85, 85, 85);
+}
+
+.books th:hover {
+    color: #08abff;
+}
+
+.books tbody td {
+    padding: 0.4em 0.75em 0.4em 0em;
+    border-bottom: 1px solid rgb(85, 85, 85);
+}
+
+/* Global table styles. */
+
+.header_ascending {
+    color: #FF2A2A; /* CONTENT AFTER UNICODE ARROW UP */
+}
+
+.header_descending {
+    color: #34AF2F; /* CONTENT AFTER UNICODE ARROW DOWN */
+}
+
+table th {
+    font-size: 1.2em;
+    letter-spacing: 0.004em;
+}
+
+span.code {
+    border: 1px dotted #333333;
+    background-color: #fffff9;
+    padding: 0em 0.2em 0em 0.2em;
 }
