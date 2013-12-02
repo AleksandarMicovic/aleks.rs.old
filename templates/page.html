@@ -2,7 +2,7 @@
 
 {% block content %}
     <h2 class="page_title">{{ page.title }}</h2>
-    {% if page.type == 'blog' %}
+    {% if page.type == 'content' and not 'list' in page.tags %}
     <div id="page_meta">
       <em>by {{ page.author }}</em><br/>
       <em>written {{ page.date }}
@@ -11,7 +11,7 @@
     {% endif %}
     {{ page.html|safe }}
 
-    {% if page.tags %}
+    {% if page.tags and not 'list' in page.tags %}
     <div id="page_footer">
       <h4>Thanks for reading!</h4>
       <p><strong>Tags:</strong> [{% for tag in page.tags %}<a href="{{ url_for('tag', tag=tag) }}">{{ tag }}</a>{% if not loop.last %}, {% endif %}{% endfor %}]</p>

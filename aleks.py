@@ -10,7 +10,7 @@ import sys
 DEBUG = True
 FLATPAGES_AUTO_RELOAD = DEBUG
 FLATPAGES_EXTENSION = '.md'
-FLATPAGES_MARKDOWN_EXTENSIONS = ['codehilite(guess_lang=False)', 'headerid']
+FLATPAGES_MARKDOWN_EXTENSIONS = ['codehilite(guess_lang=False)', 'headerid', 'tables']
 
 app = Flask(__name__)
 app.config.from_object(__name__)
@@ -34,16 +34,6 @@ def archive():
 def tag(tag):
     tagged = [page for page in pages if tag in page.meta.get('tags', [])]
     return render_template("tag.html", pages=tagged, tag=tag)
-
-@app.route("/lists/<string:item>/")
-def collection(item):
-    open_file = open('db/' + item, 'r')
-    content = open_file.read().decode('utf-8')
-    open_file.close()
-
-    items = [line.split('|') for line in content.split('\n')]
-
-    return render_template("lists/books.html", items=items)
 
 @app.route("/<path:path>/")
 def page(path):

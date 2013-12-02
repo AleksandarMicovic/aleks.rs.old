@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $(".books").tablesorter({
+    $(".books + table").tablesorter({
         cssAsc: "header_ascending",
         cssDesc: "header_descending"
     }); 

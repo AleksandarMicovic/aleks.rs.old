@@ -1,7 +1,7 @@
 title: The Unix Way
-author: Aleksandar Mićović
+author: Anonymous
 type: content
-tags: []
+tags: [unix, philosophy]
 date: 2013-03-29
 updated: 2013-11-29
 

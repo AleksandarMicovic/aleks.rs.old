@@ -26,10 +26,3 @@ It's very easy to get in touch with me. Here are some ways:
 **Github:** [AleksandarMicovic](https://github.com/aleksandarmicovic)
 
 **IRC:** I go under "aleksm" on Freenode, "aleks" on Snoonet, and "meta" on Rizon.
-
-
-### Other
-
-[My reading list, and books I've read](/lists/books/)
-
-[GNU/Linux and UNIX stuff](/unix/)

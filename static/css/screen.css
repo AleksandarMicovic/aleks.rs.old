@@ -242,22 +242,22 @@ h1 a {
     text-align: right;
 }
 
-.books {
+.books + table {
     margin-top: 1em;
     width: 95%;
 }
 
-.books th {
+.books + table th {
     font-family: RobotoCondensedBold;
     cursor: pointer;
     border-bottom: 3px solid rgb(85, 85, 85);
 }
 
-.books th:hover {
+.books + table th:hover {
     color: #08abff;
 }
 
-.books tbody td {
+.books + table tbody td {
     padding: 0.4em 0.75em 0.4em 0em;
     border-bottom: 1px solid rgb(85, 85, 85);
 }

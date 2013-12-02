@@ -5,13 +5,22 @@ tags: []
 date: 2013-03-29
 updated: 2013-11-29
 
-This page is a catch-all for all minutiae and miscellanea. Mostly stuff that doesn't fit into any other category, but stuff I still want to share.
 
-## Writings
+### Lists
 
-[Some writings](/misc/writings/title)
+ * [Books](/lists/books/)
+ * [Teas (under construction)](#)
 
 
-## Teas
+## Lists
+ * [Books](/misc/lists/books)
 
-[List of teas](/misc/teas/list)
+
+### Writings
+
+ * [Under construction!](#)
+
+
+### Unix
+
+ * [The Unix philosophy](/misc/unix/the_unix_way/)
