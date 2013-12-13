@@ -1,7 +1,7 @@
 title: Hello World
 summary: I describe this blog's setup.
 author: Aleksandar Micovic
-type: blog
+type: content
 tags: [python, flask, jinja2]
 date: 2013-01-27
 updated: 2013-04-09
