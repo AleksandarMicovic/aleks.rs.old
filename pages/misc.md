@@ -6,21 +6,10 @@ date: 2013-03-29
 updated: 2013-11-29
 
 
+### About
+
+This page is a catch-all for all content that I'd like to share, but that doesn't belong anywhere else.
+
 ### Lists
-
- * [Books](/lists/books/)
- * [Teas (under construction)](#)
-
-
-## Lists
- * [Books](/misc/lists/books)
-
-
-### Writings
-
- * [Under construction!](#)
-
-
-### Unix
-
- * [The Unix philosophy](/misc/unix/the_unix_way/)
+ 
+ * [Books](/misc/books)

@@ -3,13 +3,16 @@
 {% block content %}
     <h2 class="page_title">{{ page.title }}</h2>
     {% if page.type == 'content' and not 'list' in page.tags %}
-    <div id="page_meta">
+    <div id="page_header">
       <em>by {{ page.author }}</em><br/>
-      <em>written {{ page.date }}
-      {% if (page.updated != page.date) and page.updated %} and updated {{ page.updated }}{% endif %}</em>
+      <em>written {{ page.date }}</em>
+      {% if (page.updated != page.date) and page.updated %}<p class="center small"><em>and last updated on {{ page.updated }}</em></p>{% endif %}
     </div>
     {% endif %}
-    {{ page.html|safe }}
+
+    {{ page.html|safe }} 
+
+    {% if page.type == 'content' %} ■ {% endif %}
 
     {% if page.tags and not 'list' in page.tags %}
     <div id="page_footer">

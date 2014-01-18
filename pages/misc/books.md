@@ -1,6 +1,6 @@
 title: Books
 author: Aleksandar Mićović
-type: content
+type: misc
 tags: [list, books]
 date: 2013-03-29
 updated: 2013-11-29
@@ -18,7 +18,8 @@ updated: 2013-11-29
 | The Wheel of Time: A Memory of Light | Robert Jordan | English |
 | The Wheel of Time: Towers of Midnight | Robert Jordan | English |
 | Under the Dome | Stephen King | English |
-
+| Lagum | Svetlana Velmar-Janković | Serbian |
+| After Dark | Haruki Murakami | Serbian |
 
 <br/>
 
@@ -86,6 +87,7 @@ updated: 2013-11-29
 | The Rainmaker | John Grisham | English |
 | The Runaway Jury | John Grisham | English |
 | The Sands of Time | Sidney Sheldon | English |
+| The Shining | Stephen King | Serbian |
 | The Silmarillion | J. R. R. Tolkien | English |
 | The Sirens of Titan | Kurt Vonnegut | English |
 | The Sky is Falling | Sidney Sheldon | English |

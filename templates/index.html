@@ -2,8 +2,11 @@
 
 {% block content %}
 
-	<h2>{{ post.title }}</h2>
+  <h3>Recent Posts</h3>
 
-	{{ post }}
-
+  <ul>
+  {% for page in pages %}
+     <li><a href="{{ url_for('page', path=page.path) }}">{{ page.title }}</a> <em class="small">({{ page.date }})</em></li>
+  {% endfor %}
+  </ul>
 {% endblock %}

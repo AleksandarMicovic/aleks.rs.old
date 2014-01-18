@@ -10,14 +10,14 @@ updated: 2013-11-29
 
 If you're looking for my CV, you can find it [here](/static/resume.pdf).
 
-My name is Aleksandar Micovic, and this is my little corner of the Internet. I have a degree in Computer Science from the University of Toronto, and work as a software engineer in Belgrade, Serbia. I spend a lot of my spare time coding, and consistently dreaming about monads and burritos. I have not spoken to a psychologist yet.
+My name is Aleksandar Mićović, and this is my little corner of the Internet. I have a degree in Computer Science from the University of Toronto, and work as a software engineer in Belgrade, Serbia. I spend a lot of my spare time coding, and consistently dreaming about monads and burritos. I have not spoken to a psychologist yet.
 
 
 ### Contact
 
 It's very easy to get in touch with me. Here are some ways:
 
-**Email:** <a href="https://www.google.com/recaptcha/mailhide/d?k=01Tla6qt8eVglBTox2ZamUZA==&c=DRhShnVqIAlgbJxuq2Sx7Q==" target="_blank">Click here to reveal it.</a>
+**Email:** <a href="http://www.google.com/recaptcha/mailhide/d?k=01w2wJVFVvQxvZFjYBhVTyPQ==&c=mj_OLyRslIiGJQZWVwTk80v2vE7H_ohew2l-qvbylUw=" target="_blank">Click here to reveal it.</a>
 
 **Twitter:** [@AleksMicovic](https://twitter.com/aleksmicovic)
 
