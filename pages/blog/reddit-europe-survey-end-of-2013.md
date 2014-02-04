@@ -20,7 +20,7 @@ Intro here
 <div id="new_question"></div>
 <div id="questions_added"></div>
 
-<div class="center"><iframe src="/static/res/reddit-europe-survey-end-of-2013/map.svg" width="680" height="520" class="overflow_hidden border_all" scrolling="no"></iframe></div>
+<div class="center"><iframe src="/static/res/reddit-europe-survey-end-of-2013/map.svg" width="680" height="520" class="overflow_hidden border_all" scrolling="no" id="map_of_europe"></iframe></div>
 
 
 ### Interestings stuff
