@@ -1,4 +1,6 @@
 var TOTAL = 0;
+var IFRAME = null;
+var INNER_IFRAME = null;
 
 var RESPONSES = [];
 
@@ -38,9 +40,9 @@ var COUNTRIES = {
     "Poland": {regions: ["pl"]},
     "Portugal": {regions: ["pt"]},
     "Romania": {regions: ["ro"]},
-    "Russia": {regions: ["ru"]},
+    "Russia": {regions: ["ru-kgd", "ru-main"]},
     "San Marino": {regions: ["sm"]},
-    "Serbia": {regions: ["rs", "Kosovo"]},
+    "Serbia": {regions: ["rs"]},
     "Slovakia": {regions: ["sk"]},
     "Slovenia": {regions: ["si"]},
     "Spain": {regions: ["es"]},
@@ -86,7 +88,7 @@ function prepare_countries() {
     for (var country in COUNTRIES) {
         COUNTRIES[country].total = 0;
         COUNTRIES[country].percentage = 0;
-        COUNTRIES[country].colour = "#CCCCCC";
+        COUNTRIES[country].colour = "#f0f0f0";
     }
 
     $.get("/static/res/reddit-europe-survey-end-of-2013/europe_survey.csv", function(csv) {
@@ -104,11 +106,9 @@ function prepare_countries() {
             // Go through every question in the current response.
             RESPONSES.push(response);
         }
-    });
-}
 
-function prepare_map() {
-    // Colour the water.
+        update_map(false);
+    });
 }
 
 function build_global_select_box() {
@@ -158,7 +158,7 @@ function add_question() {
     $("#filtered_question option:first").attr('selected', 'selected');
 
     // Add a finished link to clear the current question from being added.
-    var finished_link = "<a href='#' id='finished_question'>Done!</a>";
+    var finished_link = " <a href='#' id='finished_question'>Done!</a>";
     $("#new_question").append(finished_link);
 
     $("#finished_question").click(function(e) {
@@ -170,8 +170,8 @@ function add_question() {
         FILTERS_ADDED.push(filter_id);
 
         var remove_question = "<em><a href='#' class='remove_question' id='remove_" + question_id + "'>(Remove)</a></em>";
-        var added_question = "<p id='question_" + question_id + "'>" + QUESTIONS[question_id].title + 
-                             ": " + QUESTIONS[question_id].filters[filter_id].text + " " + remove_question + "</p>";
+        var added_question = "<p id='question_" + question_id + "' class='query'><strong>Query -- " + QUESTIONS[question_id].title + 
+                             ":</strong> " + QUESTIONS[question_id].filters[filter_id].text + " " + remove_question + "</p>";
         $("#questions_added").append(added_question);
         $("#new_question").html('');
 
@@ -179,6 +179,8 @@ function add_question() {
         // and then clicks the "add" button to add this current question.
 
         update_map(false);
+
+        update_handlers();
     });
 
     // Update the map with everything in QUESTIONS/FILTERS_ADDED, and also include
@@ -191,6 +193,32 @@ function add_question() {
         question_id: question_id, 
         filter_id: filter_id
     });
+
+    update_handlers();
+}
+
+function update_handlers() {
+    // Removing already added questions.
+    $(".remove_question").click(function(e) {
+        e.preventDefault();
+        var id = $(this).attr('id').split("remove_")[1];
+        var location_in_array = QUESTIONS_ADDED.indexOf(id);
+        QUESTIONS_ADDED.splice(location_in_array, 1);
+        FILTERS_ADDED.splice(location_in_array, 1);
+        $("#question_" + id).remove();
+        update_map(false);
+    });
+
+    // Update the map on any filter change.
+    $("#filtered_question").change(function() {
+        var question_id = parseInt($("#main_question option:selected").val());
+        var filter_id = parseInt($("#filtered_question option:selected").val());
+
+        update_map({
+            question_id: question_id, 
+            filter_id: filter_id
+        });
+    })
 }
 
 function update_map(current_query) {
@@ -207,6 +235,29 @@ function update_map(current_query) {
     if (current_query) {
         questions_selected.push(current_query.question_id);
         filters_selected.push(current_query.filter_id);
+    }
+
+    // Reset countries and counts.
+
+    for (var country in COUNTRIES) {
+        COUNTRIES[country].total = 0;
+        COUNTRIES[country].percentage = 0;
+        COUNTRIES[country].colour = "#f0f0f0"
+    }
+
+    TOTAL = 0;
+
+    // If there are no questions selected, then reset the map.
+
+    if (!questions_selected.length) {
+        for (var i=0; i<RESPONSES.length; i++) {
+            COUNTRIES[RESPONSES[i][4]].total++;
+            TOTAL++;
+        }
+
+        $("#total").html(TOTAL);
+        colour_countries();
+        return false;
     }
 
     // Now that we have our final list of questions, build the results!
@@ -231,6 +282,7 @@ function update_map(current_query) {
         }
     }
 
+    $("#total").html(TOTAL);
     colour_countries();
 }
 
@@ -247,37 +299,50 @@ function darken_colour(colour, shade) {
            
     var new_colour_int = (red << 16) + (green << 8) + (blue);
     var new_colour = "#" + new_colour_int.toString(16);
-           
-    return new_colour;
+
+    if (new_colour.indexOf("-") == -1) {
+        return new_colour;
+    } else {
+        return "#000000"
+    }
 }
 
 function colour_countries() {
-    base_colour = "#ffa0a0";
+    base_colour = "#FFCCCC";
     var iframe = document.getElementById('map_of_europe');
     var inner_iframe = iframe.contentDocument || iframe.contentWindow.document;
 
-    console.log(inner_iframe);
-
     for (var country in COUNTRIES) {
-        var percentage = (COUNTRIES[country].total / TOTAL) * 100;
-        COUNTRIES[country].percentage = percentage; // Round to 2.
-        COUNTRIES[country].colour = darken_colour(base_colour, -parseInt(percentage) * 2); // A simple scalar for greater variance.
-        
+        if (COUNTRIES[country].total == 0){
+            COUNTRIES[country].percentage = 0;
+            COUNTRIES[country].colour = "#f0f0f0";
+        } else {
+            var percentage = (COUNTRIES[country].total / TOTAL) * 100;
+            COUNTRIES[country].percentage = percentage; // Round to 2.
+            COUNTRIES[country].colour = darken_colour(base_colour, -parseInt(percentage) * 10); // A simple scalar for greater variance.
+        }
+
         // We can finally colour in the countries now.
-        
         for (var i=0; i<COUNTRIES[country].regions.length; i++) {
-            console.log(COUNTRIES[country].regions[i]);
             inner_iframe.getElementById(COUNTRIES[country].regions[i]).style.fill = COUNTRIES[country].colour;
         }
     }
 }
 
 $(document).ready(function() {
-    prepare_countries();
-
-    $("#add_question").click(function(e) {
+    $("#start_app").click(function(e) {
         e.preventDefault();
-        e.stopPropagation();
-        add_question();
+        $(this).hide();
+
+        IFRAME = document.getElementById('map_of_europe');
+        INNER_IFRAME = IFRAME.contentDocument || IFRAME.contentWindow.document;
+        prepare_countries();
+
+        $("#add_question").show();
+        $("#add_question > a").click(function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            add_question();
+        });
     });
 });

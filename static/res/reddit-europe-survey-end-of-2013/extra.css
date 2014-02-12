@@ -1,0 +1,24 @@
+.query {
+	text-indent: 4em;
+}
+
+iframe {
+	margin-top: 0.5em;
+}
+
+#add_question {
+	border-top: 1px dotted black;
+	padding-top: 0.25em;
+	display: none;
+	margin-top: 0.3em;
+	text-indent: 4em;
+}
+
+#new_question {
+	text-indent: 4em;
+}
+
+#start_app {
+	text-align: center;
+	font-weight: bold;
+}
