@@ -35,6 +35,7 @@ var COUNTRIES = {
     "Malta": {regions: ["mt"]},
     "Moldova": {regions: ["md"]},
     "Monaco": {regions: ["mc"]},
+    "Montenegro": {regions: ["me"]},
     "Netherlands": {regions: ["nl"]},
     "Norway": {regions: ["no"]},
     "Poland": {regions: ["pl"]},
@@ -51,21 +52,20 @@ var COUNTRIES = {
     "Turkey": {regions: ["tr"]},
     "Ukraine": {regions: ["ua"]},
     "United Kingdom": {regions: ["gb-nir", "gb-gbn", "im"]}, // Isle of Man will be its own region next survey.
-    "Vatican City": {regions: ["va"]},
-    "Montenegro": {regions: ["me"]}
+    "Vatican City": {regions: ["va"]}
 };
 
 // The list of questions. Also acts as a mapping against the spreadsheet itself.
 var QUESTIONS = [
     {
-        title: "Age",
+        title: "Age", // 0 - A
         filters: [
             {text: "Undisclosed", f: (function(input) { return 'Prefer not to answer. Sorry.' == input })},
             {text: "12 or younger", f: (function(input) { return '12 or under' == input })},
             {text: "13 to 16", f: (function(input) { return '13 - 16' == input })},
             {text: "17 to 20", f: (function(input) { return '17 - 20' == input })},
             {text: "21 to 25", f: (function(input) { return '21 - 25' == input })},
-            {text: "26 to 30", f: (function(input) { return '26 - 30' == input })},
+            {text: "26 to 30", f: (function(input) { return '26 - 30' == ilikenput })},
             {text: "31 to 35", f: (function(input) { return '31 - 35' == input })},
             {text: "36 to 40", f: (function(input) { return '36 - 40' == input })},
             {text: "41 to 45", f: (function(input) { return '41 - 45' == input })},
@@ -75,7 +75,526 @@ var QUESTIONS = [
             {text: "61+", f: (function(input) { return '61 or over' == input })}
         ]
     },
-    {} // The countries... Not used.
+    {
+        title: "Gender", // 1 - B
+        filters: [
+            {text: "Male", f: (function(input) { return 'Male' == input })},
+            {text: "Female", f: (function(input) { return 'Female' == input })},
+            {text: "Undisclosed", f: (function(input) { return 'Prefer not to answer. Sorry.' == input })}
+        ]        
+    },
+    {
+        title: "Sexual orientation", // 2 - C
+        filters: [
+            {text: "(1) Exclusively heterosexual", f: (function(input) { return 'Exclusively heterosexual' == input })},
+            {text: "(2) Mostly heterosexual", f: (function(input) { return 'Mostly heterosexual' == input })},
+            {text: "(3) Exclusively homosexual", f: (function(input) { return 'Exclusively homosexual' == input })},
+            {text: "(4) Mostly homosexual", f: (function(input) { return 'Mostly homosexual' == input })},
+            {text: "(5) Bisexual", f: (function(input) { return 'Bisexual' == input })},
+            {text: "(6) Asexual", f: (function(input) { return 'Asexual' == input })},
+            {text: "(7) Non-specific genderqueer", f: (function(input) { return 'Non-specific genderqueer' == input })},
+            {text: "(8) Undisclosed", f: (function(input) { return 'Prefer not to answer. Sorry.' == input })},
+            {text: "(1) & (2) Heterosexual", f: (function(input) { return 'Exclusively heterosexual' == input || 'Mostly heterosexual' == input })},
+            {text: "(3) & (4) Homosexual", f: (function(input) { return 'Exclusively homosexual' == input || 'Mostly homosexual' == input })}
+        ]        
+    },
+    {
+        title: "Marrital Status", // 3 - D
+        filters: [
+            {
+                text: "(1) Single, living with family",
+                f: (function(input) { return 'Single, living with family' == input })
+            },
+            {
+                text: "(2) Single, living alone / with housemates",
+                f: (function(input) { return 'Single, living alone / with housemates' == input })
+            },
+            {
+                text: "(3) Single, living with partner",
+                f: (function(input) { return 'Single, living with partner' == input })
+            },
+            {
+                text: "(4) Married / Civil partnership, living with partner", 
+                f: (function(input) { return 'Married / Civil partnership, living with partner' == input })
+            },
+            {
+                text: "(5) Married / Civil partnership, separated", 
+                f: (function(input) { return 'Married / Civil partnership, separated' == input })
+            },
+            {
+                text: "(6) Married / Civil partnership, widowed",
+                f: (function(input) { return 'Married / Civil partnership, widowed' == input })
+            },
+            {
+                text: "(7) Other / Non-traditional partnership",
+                f: (function(input) { return 'Other / Non-traditional partnership' == input })
+            },
+            {
+                text: "(8) Undisclosed",
+                f: (function(input) { return 'Prefer not to answer. Sorry.' == input; })
+            },
+            {
+                text: "(1) & (2) & (3) Single", 
+                f: (function(input) {
+                    return 'Single, living with family' == input ||
+                           'Single, living alone / with housemates' == input || 
+                           'Single, living with partner' == input;
+                })
+            },
+            {
+                text: "(4) & (5) & (6) Married (in the past or presently)", 
+                f: (function(input) {
+                    return 'Married / Civil partnership, living with partner' == input ||
+                           'Married / Civil partnership, separated' == input || 
+                           'Married / Civil partnership, widowed' == input;
+                })
+            },
+        ]        
+    },
+    {}, // 4 - E, The countries... Not used, except for seeing where responses come from
+    {
+        title: 'Country of residence', // 5 - F, Country of residence
+        filters: []
+    },
+    {
+        title: 'Are you an ethnic minority where you live?', // 6 - G
+        filters: [
+            {
+                text: "No",
+                f: (function(input) { return 'No' == input; })
+            },
+            {
+                text: "Yes",
+                f: (function(input) { return 'Yes' == input; })
+            },
+            {
+                text: "Partially / difficult to answer",
+                f: (function(input) { return 'Partially and/or difficult to answer.' == input; })
+            },
+            {
+                text: "Prefer not to answer. Sorry.",
+                f: (function(input) { return 'Prefer not to answer. Sorry.' == input; })
+            }
+        ]
+    },
+    {
+        title: 'How many languages do you speak fluently?', // 7 - H
+        filters: [
+            {
+                text: "1",
+                f: (function(input) { return '1' == input; })
+            },
+            {
+                text: "2",
+                f: (function(input) { return '2' == input; })
+            },
+            {
+                text: "3",
+                f: (function(input) { return '3' == input; })
+            },
+            {
+                text: "4",
+                f: (function(input) { return '4' == input; })
+            },
+            {
+                text: "5+",
+                f: (function(input) { return '5+' == input; })
+            }
+        ]
+    },
+    {
+        title: 'Highest completed education', // 7 - H
+        filters: [
+            {
+                text: "(1) High school or less",
+                f: (function(input) { return 'High school or less' == input; })
+            },
+            {
+                text: "(2) Certificates and/or other accreditation",
+                f: (function(input) { return 'Certificates and/or other accreditation' == input; })
+            },
+            {
+                text: "(3) College (A-level, Baccalaureate)",
+                f: (function(input) { return 'College (A-level, Baccalaureate)' == input; })
+            },
+            {
+                text: "(4) Bachelor\'s degree",
+                f: (function(input) { return 'Bachelor\'s degree' == input; })
+            },
+            {
+                text: "(5) Master\'s degree",
+                f: (function(input) { return 'Master\'s degree' == input; })
+            },
+            {
+                text: "(6) Doctorate",
+                f: (function(input) { return 'Doctorate' == input; })
+            },
+            {
+                text: "(7) Undisclosed",
+                f: (function(input) { return 'Prefer not to answer. Sorry.' == input; })
+            },
+            {
+                text: "(4) & (5) & (6) University-level education",
+                f: (function(input) { return 'Doctorate' == input || 'Bachelor\'s degree' == input || 'Master\'s degree' == input; })
+            },
+        ]
+    },
+    {
+        title: 'Employment',
+        filters: [
+            { text: "(1) Full-time student ", f: (function(input) { return 'Full-time student' == input; })},  
+            { text: "(2) Part-time student ", f: (function(input) { return 'Part-time student' == input; })},  
+            { text: "(3) Part-time student & work", f: (function(input) { return 'Part-time student and part-time employment' == input; })},  
+            { text: "(4) Full-time student & work", f: (function(input) { return 'Full-time student and part-time employment' == input; })},  
+            { text: "(5) Full-time training", f: (function(input) { return 'Full-time vocational training' == input; })},  
+            { text: "(6) Unemployed", f: (function(input) { return 'Unemployed' == input; })},  
+            { text: "(7) Employed", f: (function(input) { return 'Employed' == input; })},  
+            { text: "(8) Self-employed", f: (function(input) { return 'Self-employed' == input; })},  
+            { text: "(9) Part-time work", f: (function(input) { return 'Part-time employment' == input; })},  
+            { text: "(10) Full-time parent/carer", f: (function(input) { return 'Full-time parent or carer' == input; })},  
+            { text: "(11) Retired", f: (function(input) { return 'Retired' == input; })},  
+            { text: "(12) Can't work (medical reasons)", f: (function(input) { return 'I do not work for health/medical reasons.' == input; })},  
+            { text: "(13) Undisclosed", f: (function(input) { return 'Prefer not to answer. Sorry.' == input; })},
+            { text: "(1) & (2) & (3) & (4) Student", f: (function(input) { 
+                return 'Full-time student' == input || 
+                    'Part-time student' == input ||
+                    'Part-time student and part-time employment' == input ||
+                    'Full-time student and part-time employment' == input
+            })}
+        ]
+    },
+    {
+        title: 'Religious upbringing',
+        filters: [
+            {
+                text: "(1) Atheist",
+                f: (function(input) { return 'Atheist or no religious upbringing' == input; })
+            },
+            {
+                text: "(2) Agnostic",
+                f: (function(input) { return 'Agnostic' == input; })
+            },
+            {
+                text: "(3) Christian: Roman Catholic",
+                f: (function(input) { return 'Christian: Roman Catholic' == input; })
+            },
+            {
+                text: "(4) Christian: Protestant",
+                f: (function(input) { return 'Christian: Protestant (Anglican, Lutheran, Baptist, etc)' == input; })
+            },
+            {
+                text: "(5) Christian: Orthodox",
+                f: (function(input) { return 'Christian: Orthodox' == input; })
+            },
+            {
+                text: "(6) Christian: Non denominational",
+                f: (function(input) { return 'Christian: Non denominational / Other' == input; })
+            },
+            {
+                text: "(7) Islamic: Sunni",
+                f: (function(input) { return 'Islamic: Sunni' == input; })
+            },
+            {
+                text: "(8) Islamic: Shia",
+                f: (function(input) { return 'Islamic: Shia' == input; })
+            },
+            {
+                text: "(9) Islamic: Sufism",
+                f: (function(input) { return 'Islamic: Sufism' == input; })
+            },
+            {
+                text: "(10) Islamic: Non denominational",
+                f: (function(input) { return 'Islamic: Non denomination / Other' == input; })
+            },
+            {
+                text: "(11) Jewish: Orthodox",
+                f: (function(input) { return 'Jewish: Orthodox' == input; })
+            },
+            {
+                text: "(12) Jewish: Conservative",
+                f: (function(input) { return 'Jewish: Conservative' == input; })
+            },
+            {
+                text: "(13) Jewish: Reform",
+                f: (function(input) { return 'Jewish: Reform' == input; })
+            },
+            {
+                text: "(14) Jewish: Orthodox",
+                f: (function(input) { return 'Jewish: Orthodox' == input; })
+            },
+            {
+                text: "(15) Jewish: Other",
+                f: (function(input) { return 'Jewish: Other' == input; })
+            },
+            {
+                text: "(16) Baha'i",
+                f: (function(input) { return 'Baha\'i' == input; })
+            },
+            {
+                text: "(17) Buddhism: Theravada",
+                f: (function(input) { return 'Buddhism: Theravada' == input; })
+            },
+            {
+                text: "(18) Buddhism: Mahayana",
+                f: (function(input) { return 'Buddhism: Mahayana' == input; })
+            },
+            {
+                text: "(19) Buddhism: Other",
+                f: (function(input) { return 'Buddhism: Other' == input; })
+            },
+            {
+                text: "(20) Hinduism: Smartism",
+                f: (function(input) { return 'Hinduism: Smartism' == input; })
+            },
+            {
+                text: "(21) Hinduism: Vaishnavism",
+                f: (function(input) { return 'Hinduism: Vaishnavism' == input; })
+            },
+            {
+                text: "(22) Hinduism: Other",
+                f: (function(input) { return 'Hinduism: Other' == input; })
+            },
+            {
+                text: "(23) Sikhism",
+                f: (function(input) { return 'Sikhism' == input; })
+            },
+            {
+                text: "(24) Shinto",
+                f: (function(input) { return 'Shinto' == input; })
+            },
+            {
+                text: "(25) Confucianism",
+                f: (function(input) { return 'Confucianism' == input; })
+            },
+            {
+                text: "(26) Taoism",
+                f: (function(input) { return 'Taoism' == input; })
+            },
+            {
+                text: "(27) Taoism",
+                f: (function(input) { return 'Taoism' == input; })
+            },
+            {
+                text: "(28) Zoroastrianism",
+                f: (function(input) { return 'Zoroastrianism' == input; })
+            },
+            {
+                text: "(29) Rastafarianism",
+                f: (function(input) { return 'Rastafarianism' == input; })
+            },
+            {
+                text: "(30) Neopagan / Wicca / Druidic",
+                f: (function(input) { return 'Neopagan / Wicca / Druidic' == input; })
+            },
+            {
+                text: "(31) Spiritualist",
+                f: (function(input) { return 'Spiritualist' == input; })
+            },
+            {
+                text: "(32) Animism / Indigenous",
+                f: (function(input) { return 'Animism / Indigenous' == input; })
+            },
+            {
+                text: "(33) Mixed religious beliefs",
+                f: (function(input) { return 'Mixed religious beliefs' == input; })
+            },
+            {
+                text: "(34) Other",
+                f: (function(input) { return 'Other' == input; })
+            },
+            {
+                text: "(35) Undisclosed",
+                f: (function(input) { return 'Prefer not to answer. Sorry.' == input; })
+            },
+            {
+                text: "(3) & (4) & (5) & (6) Christian",
+                f: (function(input) { return 'Christian: Roman Catholic' == input ||
+                                      'Christian: Protestant (Anglican, Lutheran, Baptist, etc)' == input ||
+                                      'Christian: Orthodox' == input ||
+                                      'Christian: Non denominational / Other' == input; })
+            },
+            {
+                text: "(7) & (8) & (9) & (10) Muslim",
+                f: (function(input) { return 'Islamic: Sunni' == input ||
+                                      'Islamic: Shia' == input ||
+                                      'Islamic: Sufism' == input ||
+                                      'Islamic: Non denomination / Other' == input; })
+            },
+            {
+                text: "(11) & (12) & (13) & (14) & (15) Jewish",
+                f: (function(input) { return 'Jewish: Orthodox' == input || 
+                                      'Jewish: Conservative' == input ||
+                                      'Jewish: Reform' == input ||
+                                      'Jewish: Orthodox' == input ||
+                                      'Jewish: Other' == input; })
+            },
+        ]
+    },
+    {
+        title: 'Religious belief',
+        filters: []
+    },
+    {
+        title: 'Strength of belief',
+        filters: [
+            {
+                text: "(1) Very Important",
+                f: (function(input) { return '5' == input; })
+            },
+            {
+                text: "(2) Somewhat important",
+                f: (function(input) { return '4' == input; })
+            },
+            {
+                text: "(3) Neutral",
+                f: (function(input) { return '3' == input; })
+            },
+            {
+                text: "(4) Somewhat unimportant",
+                f: (function(input) { return '2' == input; })
+            },
+            {
+                text: "(5) Negligible",
+                f: (function(input) { return '1' == input; })
+            },
+            {
+                text: "(1) & (2) Important",
+                f: (function(input) { return '5' == input || '4' == input; })
+            },
+            {
+                text: "(4) & (5) Not Important",
+                f: (function(input) { return '1' == input || '2' == input; })
+            }
+        ]
+    },
+    {
+        title: 'User of illegal drugs in own country',
+        filters: [
+            {
+                text: "No. Never.",
+                f: (function(input) { return 'No. Never.' == input; })
+            },
+            {
+                text: "Not anymore, but did in the past.",
+                f: (function(input) { return 'Not anymore, but I did in the past.' == input; })
+            },
+            {
+                text: "Yes.",
+                f: (function(input) { return 'Yes.' == input; })
+            },
+            {
+                text: "Prefer not to answer. Sorry.",
+                f: (function(input) { return 'Prefer not to answer. Sorry.' == input; })
+            }
+        ]
+    },
+    {
+        title: 'View on cannabis',
+        filters: [
+            {
+                text: "Already legalised or decriminalised in own country, supports it.",
+                f: (function(input) { return 'Is currently legal or decriminalized in my country. I support it.' == input; })
+            },
+            {
+                text: "Fully support legalisation",
+                f: (function(input) { return 'I fully support legalization.' == input; })
+            },
+            {
+                text: "Support decriminalisation for personal use, but not legalisation",
+                f: (function(input) { return 'I support decriminalization for personal use, but not legalization.' == input; })
+            },
+            {
+                text: "Indifferent and/or don't care.",
+                f: (function(input) { return 'I\'m indifferent and/or don\'t care.' == input; })
+            },
+            {
+                text: "Do not support decriminalization or legalisation.",
+                f: (function(input) { return 'I do not support decriminalization or legalization.' == input; })
+            },
+            {
+                text: "Already legal or decriminalized in own country, opposes it.",
+                f: (function(input) { return 'Is currently legal or decriminalized in my country. I oppose it.' == input; })
+            },
+            {
+                text: "Undisclosed",
+                f: (function(input) { return 'Prefer not to answer. Sorry.' == input; })
+            }
+        ]
+    },
+    {
+        title: 'View on psychoactives/psychedelics',
+        filters: []
+    },
+    {
+        title: 'View on MDMA & stimulants',
+        filters: []
+    },
+    {
+        title: 'View on heroin, cocaine, "hard drugs", etc.',
+        filters: []
+    },
+    {
+        title: 'Level of pirating',
+        filters: [
+            {
+                text: "Hardcore pirate.",
+                f: (function(input) { return 'I\'m a hardcore pirate (private trackers, Usenet subscription, seedboxes, etc)' == input; })
+            },
+            {
+                text: "Pirates digital media heavily.",
+                f: (function(input) { return 'I pirate digital media heavily.' == input; })
+            },
+            {
+                text: "Pirates digital media regularly.",
+                f: (function(input) { return 'I pirate digital media regularly.' == input; })
+            },
+            {
+                text: "Occasionally downloads illegally.",
+                f: (function(input) { return 'I occasionally download illegally.' == input; })
+            },
+            {
+                text: "Rarely download illegally.",
+                f: (function(input) { return 'I rarely download illegally.' == input; })
+            },
+            {
+                text: "Have never downloaded anything illegally.",
+                f: (function(input) { return 'I have never downloaded anything illegally.' == input; })
+            },
+            {
+                text: "Undisclosed",
+                f: (function(input) { return 'Prefer not to answer. Sorry.' == input; })
+            }
+        ]
+    },
+    {
+        title: 'Purchasing digital media through legal mediums',
+        filters: [
+            {
+                text: "Yes",
+                f: (function(input) { return 'Yes' == input; })
+            },
+            {
+                text: "Sometimes",
+                f: (function(input) { return 'Sometimes' == input; })
+            },
+            {
+                text: "Rarely",
+                f: (function(input) { return 'Rarely' == input; })
+            },
+            {
+                text: "Never",
+                f: (function(input) { return 'Never' == input; })
+            },
+            {
+                text: "Undisclosed",
+                f: (function(input) { return 'Prefer not to answer. Sorry.' == input; })
+            }
+        ]
+    },
+    {
+        title: 'Non-commercial sharing of digital media should be legal',
+        filters: []
+    }
 ]
 
 // Both of these have a 1:1 correspondance.
@@ -108,6 +627,63 @@ function prepare_countries() {
         }
 
         update_map(false);
+
+        // Copy over the religious list.
+
+        QUESTIONS[11].filters = QUESTIONS[10].filters;
+
+        // And the drug options.
+
+        QUESTIONS[15].filters = QUESTIONS[14].filters;
+        QUESTIONS[16].filters = QUESTIONS[14].filters;
+        QUESTIONS[17].filters = QUESTIONS[14].filters;
+
+        // Update the fields that list countries in our master list of questions.
+        
+        var questions = [5];
+        
+        var escape_closure = function(country) {
+            return (function(input) { return input == country});
+        }
+
+        for (var i=0; i<questions.length; i++) {
+            for (var country in COUNTRIES) {
+                QUESTIONS[questions[i]].filters.push({
+                    text: country,
+                    f: escape_closure(country)
+                });
+            }
+        }
+
+        // Update the fields that list questions from a scale of 1 - 5.
+
+        var agree_format = [
+            { text: "(1) Strongly agree", f: (function(input) { return '5' == input; })},
+            { text: "(2) Somewhat agree", f: (function(input) { return '4' == input; })},
+            { text: "(3) Neutral", f: (function(input) { return '3' == input; })},
+            { text: "(4) Somewhat disagree", f: (function(input) { return '2' == input; })},
+            { text: "(5) Strongly disagree", f: (function(input) { return '1' == input; })},
+            { text: "(1) & (2) Agree", f: (function(input) { return '5' == input || '4' == input; })},
+            { text: "(4) & (5) Not Important", f: (function(input) { return '1' == input || '2' == input; })}
+        ];
+
+        var views_format = [
+            { text: "(1) Very positive", f: (function(input) { return '5' == input; })},
+            { text: "(2) Somewhat positive", f: (function(input) { return '4' == input; })},
+            { text: "(3) Neutral", f: (function(input) { return '3' == input; })},
+            { text: "(4) Somewhat negative", f: (function(input) { return '2' == input; })},
+            { text: "(5) Very negative", f: (function(input) { return '1' == input; })},
+            { text: "(1) & (2) Positive", f: (function(input) { return '5' == input || '4' == input; })},
+            { text: "(4) & (5) Negative", f: (function(input) { return '1' == input || '2' == input; })}
+        ];
+        
+        questions = [
+            {question_id: 20, filters: agree_format}
+        ]
+
+        for (var i=0; i<questions.length; i++) {
+            QUESTIONS[questions[i].question_id].filters = questions[i].filters;
+        }
     });
 }
 
@@ -115,7 +691,7 @@ function build_global_select_box() {
     var select_box = "<select id='main_question'>";
 
     for (var i=0; i<QUESTIONS.length; i++) {
-        if ($.inArray(i, QUESTIONS_ADDED) == -1) {
+        if (($.inArray(i, QUESTIONS_ADDED) == -1) && QUESTIONS[i].title) {
             select_box += "<option value='" + i + "'>" + QUESTIONS[i].title + "</option>";
         }
     }
@@ -141,7 +717,9 @@ function add_question() {
     // If we've added all the questions, don't prompt another select box. Also, since we're
     // mapping against the country field, make sure to not count that as a question, so 
     // subtract one from the total number of questions.
-    if (QUESTIONS_ADDED.length == (QUESTIONS.length - 1)) {
+
+
+    if (QUESTIONS_ADDED.length == (QUESTIONS.length- 1)) {
         alert("You can't make any more queries! :(");
         return false;
     }
@@ -160,28 +738,6 @@ function add_question() {
     // Add a finished link to clear the current question from being added.
     var finished_link = " <a href='#' id='finished_question'>Done!</a>";
     $("#new_question").append(finished_link);
-
-    $("#finished_question").click(function(e) {
-        e.preventDefault();
-        var question_id = parseInt($("#main_question option:selected").val());
-        var filter_id = parseInt($("#filtered_question option:selected").val());
-        
-        QUESTIONS_ADDED.push(question_id);
-        FILTERS_ADDED.push(filter_id);
-
-        var remove_question = "<em><a href='#' class='remove_question' id='remove_" + question_id + "'>(Remove)</a></em>";
-        var added_question = "<p id='question_" + question_id + "' class='query'><strong>Query -- " + QUESTIONS[question_id].title + 
-                             ":</strong> " + QUESTIONS[question_id].filters[filter_id].text + " " + remove_question + "</p>";
-        $("#questions_added").append(added_question);
-        $("#new_question").html('');
-
-        // We need to update the map any case the user deletes an already-established question,
-        // and then clicks the "add" button to add this current question.
-
-        update_map(false);
-
-        update_handlers();
-    });
 
     // Update the map with everything in QUESTIONS/FILTERS_ADDED, and also include
     // the current selected question and filter.
@@ -219,6 +775,49 @@ function update_handlers() {
             filter_id: filter_id
         });
     })
+
+    // Update the map on any question change.
+    $("#main_question").change(function() {
+        var finished_link = " <a href='#' id='finished_question'>Done!</a>";
+        var question_id = parseInt($("#main_question option:selected").val());
+        var filters_select_box = build_local_select_box(question_id);
+
+        $("#filtered_question").remove();
+        $("#finished_question").remove();
+        $("#new_question").append(filters_select_box);
+        $("#new_question").append(finished_link);
+        $("#filtered_question option:first").attr('selected', 'selected');
+
+        update_map({
+            question_id: question_id, 
+            filter_id: 0
+        });
+
+        update_handlers();
+    });
+
+    // Add the question.
+    $("#finished_question").click(function(e) {
+        e.preventDefault();
+        var question_id = parseInt($("#main_question option:selected").val());
+        var filter_id = parseInt($("#filtered_question option:selected").val());
+        
+        QUESTIONS_ADDED.push(question_id);
+        FILTERS_ADDED.push(filter_id);
+
+        var remove_question = "<em><a href='#' class='remove_question' id='remove_" + question_id + "'>(Remove)</a></em>";
+        var added_question = "<p id='question_" + question_id + "' class='query'><strong>Query — " + QUESTIONS[question_id].title + 
+                             ":</strong> " + QUESTIONS[question_id].filters[filter_id].text + " " + remove_question + "</p>";
+        $("#questions_added").append(added_question);
+        $("#new_question").html('');
+
+        // We need to update the map any case the user deletes an already-established question,
+        // and then clicks the "add" button to add this current question.
+
+        update_map(false);
+
+        update_handlers();
+    });
 }
 
 function update_map(current_query) {
