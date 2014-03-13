@@ -65,7 +65,7 @@ var QUESTIONS = [
             {text: "13 to 16", f: (function(input) { return '13 - 16' == input })},
             {text: "17 to 20", f: (function(input) { return '17 - 20' == input })},
             {text: "21 to 25", f: (function(input) { return '21 - 25' == input })},
-            {text: "26 to 30", f: (function(input) { return '26 - 30' == ilikenput })},
+            {text: "26 to 30", f: (function(input) { return '26 - 30' == input })},
             {text: "31 to 35", f: (function(input) { return '31 - 35' == input })},
             {text: "36 to 40", f: (function(input) { return '36 - 40' == input })},
             {text: "41 to 45", f: (function(input) { return '41 - 45' == input })},
@@ -592,8 +592,412 @@ var QUESTIONS = [
         ]
     },
     {
-        title: 'Non-commercial sharing of digital media should be legal',
+        title: 'Sharing of digital media should be legal', // 20
         filters: []
+    },
+    {
+        title: 'Sharing of digital media damages the industry', // 21
+        filters: []
+    },
+    {
+        title: 'Homosexual behaviour is natural', // 22
+        filters: []
+    },
+    {
+        title: 'Homosexual behaviour is moral', // 23
+        filters: []
+    },
+    {
+        title: 'Homosexual behaviour should be legal', // 24
+        filters: []
+    },
+    {
+        title: 'Gay marriage should be legal', // 25
+        filters: []
+    },
+    {
+        title: 'Humans should aspire to life-long monogamous relationships', // 26
+        filters: []
+    },
+    {
+        title: 'Age of consent should be same for heterosexual and homosexual sex', // 27
+        filters: []
+    },
+    {
+        title: 'Prostitution should be legal', // 28
+        filters: []
+    },
+    {
+        title: 'Ephebophilia should be treated differently from paedophilia ', // 29
+        filters: []
+    },
+    {
+        title: 'Age of consent in country is...', // 30
+        filters: [
+            {
+                text: "Just right",
+                f: (function(input) { return 'Just right' == input; })
+            },
+            {
+                text: "Too high",
+                f: (function(input) { return 'Too high' == input; })
+            },
+            {
+                text: "Too low",
+                f: (function(input) { return 'Too low' == input; })
+            },
+            {
+                text: "No opinion",
+                f: (function(input) { return 'No opinion.' == input; })
+            },
+            {
+                text: "Undisclosed",
+                f: (function(input) { return 'Prefer not to answer. Sorry.' == input; })
+            }
+        ]
+    },
+    {
+        title: 'All ethnicities should be treated equally', // 31
+        filters: []
+    },
+    {
+        title: 'It is possible to predict someone\'s behaviour based on ethnicity', // 32
+        filters: []
+    },
+    {
+        title: 'Racial slurs are completely unacceptable in public', // 33
+        filters: []
+    },
+    {
+        title: 'Racial slurs are completely unacceptable in private/between friends', // 34
+        filters: []
+    },
+    {
+        title: 'All religions should be treated with respect', // 35
+        filters: []
+    },
+    {
+        title: 'Views on Romani/Gypsy people are generally...', // 36
+        filters: []
+    },
+    {
+        title: 'Feelings on the EU are generally', // 37
+        filters: []
+    },
+    {
+        title: 'Feelings on the €uro are...', // 38
+        filters: []
+    },
+    {
+        title: 'Feelings about further EU integration are...', // 39
+        filters: []
+    },
+    {
+        title: 'Feelings about government welfare are...', // 40
+        filters: []
+    },
+    {
+        title: 'Feelings about American influence in Europe are...', // 41
+        filters: []
+    },
+    {
+        title: 'Feelings about America as a superpower are...', // 42
+        filters: []
+    },
+    {
+        title: 'Feelings about Chinese influence in Europe are...', // 43
+        filters: []
+    },
+    {
+        title: 'Feelings about China as a future superpower are...', // 44
+        filters: []
+    },
+    {
+        title: 'Feelings about migration from rest of EU to my country are...', // 45
+        filters: []
+    },
+    {
+        title: 'Feelings about immigration from outside of the EU to my country are...', // 46
+        filters: []
+    },
+    {
+        title: 'The EU should have a shared armed forces', // 47
+        filters: []
+    },
+    {
+        title: 'The EU should maintain its own military', // 48
+        filters: []
+    },
+    {
+        title: 'European nations should maintain nuclear capability', // 49
+        filters: []
+    },
+    {
+        title: 'There should be a right to anonymity on the internet', // 50
+        filters: []
+    },
+    {
+        title: 'Government surveillance is a growing problem in Europe', // 51
+        filters: []
+    },
+    {
+        title: 'Feelings about PRISM and/or the NSA', // 52
+        filters: [
+            {
+                text: "Already have and/or from now on encrypting everything I do online.",
+                f: (function(input) { return 'I already have and/or from now on encrypting everything I do online.' == input; })
+            },
+            {
+                text: "Going to be more conscientious of the services I use online.",
+                f: (function(input) { return 'I\'m going to be more conscientious of the services I use and the things I do online.' == input; })
+            },
+            {
+                text: "Going to continue doing what I've always been doing.",
+                f: (function(input) { return 'I\'m going to continue doing what I\'ve always been doing.' == input; })
+            },
+            {
+                text: "Don't know and/or care.",
+                f: (function(input) { return 'I don\'t know and/or care.' == input; })
+            } 
+        ]
+    },
+    {
+        title: 'Feelings about Scotland\'s independence?', // 53
+        filters: [
+            {
+                text: "Support independence.",
+                f: (function(input) { return 'I support independence.' == input; })
+            },
+            {
+                text: "Oppose independence",
+                f: (function(input) { return 'I do not support independence.' == input; })
+            },
+            {
+                text: "I don't know and/or care.",
+                f: (function(input) { return 'I don\'t know and/or care.' == input; })
+            }
+        ]
+    },
+    {
+        title: 'Is Turkey a part of Europe?', // 54
+        filters: [
+            {
+                text: "Yes.",
+                f: (function(input) { return 'Yes.' == input; })
+            },
+            {
+                text: "No.",
+                f: (function(input) { return 'No.' == input; })
+            },
+            {
+                text: "I don't know and/or care.",
+                f: (function(input) { return 'I don\'t know and/or care.' == input; })
+            }
+        ]
+    },
+    {
+        title: 'Would you support Turkey in the EU?', // 55
+        filters: [
+            {
+                text: "Yes.",
+                f: (function(input) { return 'Yes.' == input; })
+            },
+            {
+                text: "No.",
+                f: (function(input) { return 'No.' == input; })
+            },
+            {
+                text: "I don't know and/or care.",
+                f: (function(input) { return 'I don\'t know and/or care.' == input; })
+            }
+        ]
+    },
+    {
+        title: 'Current immigration policies need to be rethought', // 56
+        filters: []
+    },
+    {
+        title: 'Activity level on /r/europe', // 57
+        filters: [
+            {
+                text: "(1) Very active: 5+ hours every week",
+                f: (function(input) { return 'Very Active: 5+ hours every week' == input; })
+            },
+            {
+                text: "(2) Active: 1+ hour every week",
+                f: (function(input) { return 'Active: 1+ hour every week' == input; })
+            },
+            {
+                text: "(3) Regular: A few minutes here and there",
+                f: (function(input) { return 'Regular: A few minutes here and there' == input; })
+            },
+            {
+                text: "(4) Not active: Visit sometimes, if ever",
+                f: (function(input) { return 'Not active: You visit sometimes, if ever' == input; })
+            },
+            {
+                text: "(1) & (2) & (3) Active",
+                f: (function(input) { return 'Very Active: 5+ hours every week' == input ||
+                                      'Active: 1+ hour every week' == input ||
+                                      'Regular: A few minutes here and there' == input;})
+            },
+        ]
+    },
+    {
+        title: 'Activity level on own country subreddit', // 58
+        filters: [
+            {
+                text: "Visit /r/europe more often",
+                f: (function(input) { return 'Yes, I visit /r/europe more often.' == input; })
+            },
+            {
+                text: "About the same as /r/europe",
+                f: (function(input) { return 'Eh, about the same.' == input; })
+            },
+            {
+                text: "Visit country's subreddit more often than /r/europe",
+                f: (function(input) { return 'No, I visit my country\'s subreddit more often.' == input; })
+            },
+            {
+                text: "Doesn't know",
+                f: (function(input) { return 'I don\'t know.' == input; })
+            }
+        ]
+    },
+    {
+        title: 'The content submitted to /r/europe is...', // 59
+        filters: []
+    },
+    {
+        title: 'The comment threads on /r/europe are...', // 60
+        filters: []
+    },
+    {
+        title: 'The moderators on /r/europe are...', // 61
+        filters: []
+    },
+    {
+        title: 'The /r/europe community is...', // 62
+        filters: []
+    },
+    {
+        title: 'Racism is a problem in /r/europe...', // 63
+        filters: []
+    },
+    {
+        title: 'Racism should result in an immediate ban from /r/europe', // 64
+        filters: []
+    },
+    {
+        title: 'Feelings about Eurovision', // 65
+        filters: []
+    },
+    {
+        title: 'The European country with the silliest accent', // 66
+        filters: []
+    },
+    {
+        title: 'The European country with the the most attractive citizens', // 67
+        filters: []
+    },
+    {
+        title: 'The European country that can drink the most', // 68
+        filters: []
+    },
+    {
+        title: 'The European country that\'s your favourite, apart from your own', // 69
+        filters: []
+    },
+    {
+        title: 'The European country that\'s your least favourite', // 70
+        filters: []
+    },
+    {
+        title: 'The European country that would give you the biggest culture shock', // 71
+        filters: []
+    },
+    {
+        title: 'The European country with the worst sense of humour', // 72
+        filters: [
+            {
+                text: "Germany",
+                f: (function(input) { return 'Germany' == input; })
+            },
+            {
+                text: "I am German and do not find this funny.",
+                f: (function(input) { return 'I am German and do not find this funny.' == input; })
+            }
+        ]
+    },
+    {
+        title: 'The European country that loves to complain', // 73
+        filters: [
+            {
+                text: "United Kingdom",
+                f: (function(input) { return 'United Kingdom' == input; })
+            },
+            {
+                text: "United Kingdom, and I fart in their general direction.",
+                f: (function(input) { return 'United Kingdom, and I fart in their general direction.' == input; })
+            },
+            {
+                text: "I am British and this question does not sit well with me!",
+                f: (function(input) { return 'I am British and this question does not sit well with me!' == input; })
+            }
+        ]
+    },
+    {
+        title: 'Favourite moderator', // 74
+        filters: [
+            {
+                text: "kitestramuort",
+                f: (function(input) { return 'kitestramuort' == input; })
+            },
+            {
+                text: "Raerth",
+                f: (function(input) { return 'Raerth' == input; })
+            },
+            {
+                text: "TheSkyNet",
+                f: (function(input) { return 'TheSkyNet' == input; })
+            },
+            {   
+                text: "SpAn12",
+                f: (function(input) { return 'SpAn12' == input; })
+            },
+            {
+                text: "gschizas",
+                f: (function(input) { return 'gschizas' == input; })
+            },
+            {
+                text: "Bezbojnicul",
+                f: (function(input) { return 'Bezbojnicul' == input; })
+            },
+            {
+                text: "davidreiss666",
+                f: (function(input) { return 'davidreiss666' == input; })
+            },
+            {
+                text: "Skuld",
+                f: (function(input) { return 'Skuld' == input; })
+            },
+            {
+                text: "JB_UK",
+                f: (function(input) { return 'JB_UK' == input; })
+            },
+            {
+                text: "metaleks",
+                f: (function(input) { return 'metaleks' == input; })
+            },
+            {
+                text: "Aschebescher",
+                f: (function(input) { return 'Aschebescher' == input; })
+            },
+            {
+                text: "They're all bad and they should feel bad.",
+                f: (function(input) { return 'They\'re all bad and they should feel bad.' == input; })
+            }
+        ]
     }
 ]
 
@@ -640,7 +1044,7 @@ function prepare_countries() {
 
         // Update the fields that list countries in our master list of questions.
         
-        var questions = [5];
+        var questions = [5, 66, 67, 68, 69, 70, 71];
         
         var escape_closure = function(country) {
             return (function(input) { return input == country});
@@ -664,7 +1068,7 @@ function prepare_countries() {
             { text: "(4) Somewhat disagree", f: (function(input) { return '2' == input; })},
             { text: "(5) Strongly disagree", f: (function(input) { return '1' == input; })},
             { text: "(1) & (2) Agree", f: (function(input) { return '5' == input || '4' == input; })},
-            { text: "(4) & (5) Not Important", f: (function(input) { return '1' == input || '2' == input; })}
+            { text: "(4) & (5) Disagree", f: (function(input) { return '1' == input || '2' == input; })}
         ];
 
         var views_format = [
@@ -676,9 +1080,57 @@ function prepare_countries() {
             { text: "(1) & (2) Positive", f: (function(input) { return '5' == input || '4' == input; })},
             { text: "(4) & (5) Negative", f: (function(input) { return '1' == input || '2' == input; })}
         ];
+
+        var like_format = [
+            { text: "(1) Very good", f: (function(input) { return '5' == input; })},
+            { text: "(2) Somewhat good", f: (function(input) { return '4' == input; })},
+            { text: "(3) Neutral", f: (function(input) { return '3' == input; })},
+            { text: "(4) Somewhat bad", f: (function(input) { return '2' == input; })},
+            { text: "(5) Really bad", f: (function(input) { return '1' == input; })},
+            { text: "(1) & (2) Good", f: (function(input) { return '5' == input || '4' == input; })},
+            { text: "(4) & (5) Bad", f: (function(input) { return '1' == input || '2' == input; })}
+        ];
         
         questions = [
-            {question_id: 20, filters: agree_format}
+            {question_id: 20, filters: agree_format},
+            {question_id: 21, filters: agree_format},
+            {question_id: 22, filters: agree_format},
+            {question_id: 23, filters: agree_format},
+            {question_id: 24, filters: agree_format},
+            {question_id: 25, filters: agree_format},
+            {question_id: 26, filters: agree_format},
+            {question_id: 27, filters: agree_format},
+            {question_id: 28, filters: agree_format},
+            {question_id: 29, filters: agree_format},
+            {question_id: 31, filters: agree_format},
+            {question_id: 32, filters: agree_format},
+            {question_id: 33, filters: agree_format},
+            {question_id: 34, filters: agree_format},
+            {question_id: 35, filters: agree_format},
+            {question_id: 36, filters: agree_format},
+            {question_id: 37, filters: views_format},
+            {question_id: 38, filters: views_format},
+            {question_id: 39, filters: views_format},
+            {question_id: 40, filters: views_format},
+            {question_id: 41, filters: views_format},
+            {question_id: 42, filters: views_format},
+            {question_id: 43, filters: views_format},
+            {question_id: 44, filters: views_format},
+            {question_id: 45, filters: views_format},
+            {question_id: 46, filters: views_format},
+            {question_id: 47, filters: agree_format},
+            {question_id: 48, filters: agree_format},
+            {question_id: 49, filters: agree_format},
+            {question_id: 50, filters: agree_format},
+            {question_id: 51, filters: agree_format},
+            {question_id: 56, filters: agree_format},
+            {question_id: 59, filters: like_format},
+            {question_id: 60, filters: like_format},
+            {question_id: 61, filters: like_format},
+            {question_id: 62, filters: like_format},
+            {question_id: 63, filters: agree_format},
+            {question_id: 64, filters: agree_format},
+            {question_id: 65, filters: views_format}
         ]
 
         for (var i=0; i<questions.length; i++) {
