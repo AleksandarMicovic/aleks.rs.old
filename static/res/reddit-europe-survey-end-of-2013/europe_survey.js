@@ -58,376 +58,158 @@ var COUNTRIES = {
 // The list of questions. Also acts as a mapping against the spreadsheet itself.
 var QUESTIONS = [
     {
-        title: "Age", // 0 - A
+        title: "Age",
         filters: [
-            {text: "Undisclosed", f: (function(input) { return 'Prefer not to answer. Sorry.' == input })},
-            {text: "12 or younger", f: (function(input) { return '12 or under' == input })},
-            {text: "13 to 16", f: (function(input) { return '13 - 16' == input })},
-            {text: "17 to 20", f: (function(input) { return '17 - 20' == input })},
-            {text: "21 to 25", f: (function(input) { return '21 - 25' == input })},
-            {text: "26 to 30", f: (function(input) { return '26 - 30' == input })},
-            {text: "31 to 35", f: (function(input) { return '31 - 35' == input })},
-            {text: "36 to 40", f: (function(input) { return '36 - 40' == input })},
-            {text: "41 to 45", f: (function(input) { return '41 - 45' == input })},
-            {text: "46 to 50", f: (function(input) { return '46 - 50' == input })},
-            {text: "51 to 55", f: (function(input) { return '51 - 55' == input })},
-            {text: "56 to 60", f: (function(input) { return '56 - 60' == input })},
-            {text: "61+", f: (function(input) { return '61 or over' == input })}
+            {text: "Undisclosed", f: (function(input) { return 'Prefer not to answer. Sorry.' == input;})},
+            {text: "12 or younger", f: (function(input) { return '12 or under' == input; })},
+            {text: "13 to 16", f: (function(input) { return '13 - 16' == input; })},
+            {text: "17 to 20", f: (function(input) { return '17 - 20' == input; })},
+            {text: "21 to 25", f: (function(input) { return '21 - 25' == input; })},
+            {text: "26 to 30", f: (function(input) { return '26 - 30' == input; })},
+            {text: "31 to 35", f: (function(input) { return '31 - 35' == input; })},
+            {text: "36 to 40", f: (function(input) { return '36 - 40' == input; })},
+            {text: "41 to 45", f: (function(input) { return '41 - 45' == input; })},
+            {text: "46 to 50", f: (function(input) { return '46 - 50' == input; })},
+            {text: "51 to 55", f: (function(input) { return '51 - 55' == input; })},
+            {text: "56 to 60", f: (function(input) { return '56 - 60' == input; })},
+            {text: "61+", f: (function(input) { return '61 or over' == input; })}
         ]
     },
     {
-        title: "Gender", // 1 - B
+        title: "Gender",
         filters: [
-            {text: "Male", f: (function(input) { return 'Male' == input })},
-            {text: "Female", f: (function(input) { return 'Female' == input })},
-            {text: "Undisclosed", f: (function(input) { return 'Prefer not to answer. Sorry.' == input })}
+            {text: "Male", f: (function(input) { return 'Male' == input; })},
+            {text: "Female", f: (function(input) { return 'Female' == input; })},
+            {text: "Undisclosed", f: (function(input) { return 'Prefer not to answer. Sorry.' == input; })}
         ]        
     },
     {
-        title: "Sexual orientation", // 2 - C
+        title: "Sexual orientation",
         filters: [
-            {text: "(1) Exclusively heterosexual", f: (function(input) { return 'Exclusively heterosexual' == input })},
-            {text: "(2) Mostly heterosexual", f: (function(input) { return 'Mostly heterosexual' == input })},
-            {text: "(3) Exclusively homosexual", f: (function(input) { return 'Exclusively homosexual' == input })},
-            {text: "(4) Mostly homosexual", f: (function(input) { return 'Mostly homosexual' == input })},
-            {text: "(5) Bisexual", f: (function(input) { return 'Bisexual' == input })},
-            {text: "(6) Asexual", f: (function(input) { return 'Asexual' == input })},
-            {text: "(7) Non-specific genderqueer", f: (function(input) { return 'Non-specific genderqueer' == input })},
-            {text: "(8) Undisclosed", f: (function(input) { return 'Prefer not to answer. Sorry.' == input })},
-            {text: "(1) & (2) Heterosexual", f: (function(input) { return 'Exclusively heterosexual' == input || 'Mostly heterosexual' == input })},
-            {text: "(3) & (4) Homosexual", f: (function(input) { return 'Exclusively homosexual' == input || 'Mostly homosexual' == input })}
+            {text: "(1) Exclusively heterosexual", f: (function(input) { return 'Exclusively heterosexual' == input; })},
+            {text: "(2) Mostly heterosexual", f: (function(input) { return 'Mostly heterosexual' == input; })},
+            {text: "(3) Exclusively homosexual", f: (function(input) { return 'Exclusively homosexual' == input; })},
+            {text: "(4) Mostly homosexual", f: (function(input) { return 'Mostly homosexual' == input; })},
+            {text: "(5) Bisexual", f: (function(input) { return 'Bisexual' == input; })},
+            {text: "(6) Asexual", f: (function(input) { return 'Asexual' == input; })},
+            {text: "(7) Non-specific genderqueer", f: (function(input) { return 'Non-specific genderqueer' == input; })},
+            {text: "(8) Undisclosed", f: (function(input) { return 'Prefer not to answer. Sorry.' == input; })},
+            {text: "(1) & (2) Heterosexual", f: (function(input) { return 'Exclusively heterosexual' == input || 'Mostly heterosexual' == input; })},
+            {text: "(3) & (4) Homosexual", f: (function(input) { return 'Exclusively homosexual' == input || 'Mostly homosexual' == input; })}
         ]        
     },
     {
-        title: "Marrital Status", // 3 - D
+        title: "Marrital Status",
         filters: [
-            {
-                text: "(1) Single, living with family",
-                f: (function(input) { return 'Single, living with family' == input })
-            },
-            {
-                text: "(2) Single, living alone / with housemates",
-                f: (function(input) { return 'Single, living alone / with housemates' == input })
-            },
-            {
-                text: "(3) Single, living with partner",
-                f: (function(input) { return 'Single, living with partner' == input })
-            },
-            {
-                text: "(4) Married / Civil partnership, living with partner", 
-                f: (function(input) { return 'Married / Civil partnership, living with partner' == input })
-            },
-            {
-                text: "(5) Married / Civil partnership, separated", 
-                f: (function(input) { return 'Married / Civil partnership, separated' == input })
-            },
-            {
-                text: "(6) Married / Civil partnership, widowed",
-                f: (function(input) { return 'Married / Civil partnership, widowed' == input })
-            },
-            {
-                text: "(7) Other / Non-traditional partnership",
-                f: (function(input) { return 'Other / Non-traditional partnership' == input })
-            },
-            {
-                text: "(8) Undisclosed",
-                f: (function(input) { return 'Prefer not to answer. Sorry.' == input; })
-            },
-            {
-                text: "(1) & (2) & (3) Single", 
-                f: (function(input) {
-                    return 'Single, living with family' == input ||
-                           'Single, living alone / with housemates' == input || 
-                           'Single, living with partner' == input;
-                })
-            },
-            {
-                text: "(4) & (5) & (6) Married (in the past or presently)", 
-                f: (function(input) {
-                    return 'Married / Civil partnership, living with partner' == input ||
-                           'Married / Civil partnership, separated' == input || 
-                           'Married / Civil partnership, widowed' == input;
-                })
-            },
+            {text: "(1) Single, living with family", f: (function(input) { return 'Single, living with family' == input; })            },
+            {text: "(2) Single, living alone / with housemates", f: (function(input) { return 'Single, living alone / with housemates' == input; })},
+            {text: "(3) Single, living with partner", f: (function(input) { return 'Single, living with partner' == input; })},
+            {text: "(4) Married / Civil partnership, living with partner", f: (function(input) { return 'Married / Civil partnership, living with partner' == input; })},
+            {text: "(5) Married / Civil partnership, separated", f: (function(input) { return 'Married / Civil partnership, separated' == input; })},
+            {text: "(6) Married / Civil partnership, widowed", f: (function(input) { return 'Married / Civil partnership, widowed' == input; })},
+            {text: "(7) Other / Non-traditional partnership", f: (function(input) { return 'Other / Non-traditional partnership' == input; })},
+            {text: "(8) Undisclosed", f: (function(input) { return 'Prefer not to answer. Sorry.' == input; })},
+            {text: "(1) & (2) & (3) Single", f: (function(input) {return 'Single, living with family' == input || 'Single, living alone / with housemates' == input || 'Single, living with partner' == input;})},
+            {text: "(4) & (5) & (6) Married (in the past or presently)", f: (function(input) {return 'Married / Civil partnership, living with partner' == input || 'Married / Civil partnership, separated' == input || 'Married / Civil partnership, widowed' == input;})}
         ]        
     },
-    {}, // 4 - E, The countries... Not used, except for seeing where responses come from
+    {}, // The countries... Not used, except for seeing where responses come from
     {
-        title: 'Country of residence', // 5 - F, Country of residence
+        title: 'Country of residence',
         filters: []
     },
     {
-        title: 'Are you an ethnic minority where you live?', // 6 - G
+        title: 'Are you an ethnic minority where you live?',
         filters: [
-            {
-                text: "No",
-                f: (function(input) { return 'No' == input; })
-            },
-            {
-                text: "Yes",
-                f: (function(input) { return 'Yes' == input; })
-            },
-            {
-                text: "Partially / difficult to answer",
-                f: (function(input) { return 'Partially and/or difficult to answer.' == input; })
-            },
-            {
-                text: "Prefer not to answer. Sorry.",
-                f: (function(input) { return 'Prefer not to answer. Sorry.' == input; })
-            }
+            {text: "No", f: (function(input) { return 'No' == input; })},
+            {text: "Yes", f: (function(input) { return 'Yes' == input; })},
+            {text: "Partially / difficult to answer", f: (function(input) { return 'Partially and/or difficult to answer.' == input; })},
+            {text: "Prefer not to answer. Sorry.", f: (function(input) { return 'Prefer not to answer. Sorry.' == input; })}
         ]
     },
     {
-        title: 'How many languages do you speak fluently?', // 7 - H
+        title: 'How many languages do you speak fluently?',
         filters: [
-            {
-                text: "1",
-                f: (function(input) { return '1' == input; })
-            },
-            {
-                text: "2",
-                f: (function(input) { return '2' == input; })
-            },
-            {
-                text: "3",
-                f: (function(input) { return '3' == input; })
-            },
-            {
-                text: "4",
-                f: (function(input) { return '4' == input; })
-            },
-            {
-                text: "5+",
-                f: (function(input) { return '5+' == input; })
-            }
+            {text: "1", f: (function(input) { return '1' == input; })},
+            {text: "2", f: (function(input) { return '2' == input; })},
+            {text: "3", f: (function(input) { return '3' == input; })},
+            {text: "4", f: (function(input) { return '4' == input; })},
+            {text: "5+", f: (function(input) { return '5+' == input; })}
         ]
     },
     {
-        title: 'Highest completed education', // 7 - H
+        title: 'Highest completed education',
         filters: [
-            {
-                text: "(1) High school or less",
-                f: (function(input) { return 'High school or less' == input; })
-            },
-            {
-                text: "(2) Certificates and/or other accreditation",
-                f: (function(input) { return 'Certificates and/or other accreditation' == input; })
-            },
-            {
-                text: "(3) College (A-level, Baccalaureate)",
-                f: (function(input) { return 'College (A-level, Baccalaureate)' == input; })
-            },
-            {
-                text: "(4) Bachelor\'s degree",
-                f: (function(input) { return 'Bachelor\'s degree' == input; })
-            },
-            {
-                text: "(5) Master\'s degree",
-                f: (function(input) { return 'Master\'s degree' == input; })
-            },
-            {
-                text: "(6) Doctorate",
-                f: (function(input) { return 'Doctorate' == input; })
-            },
-            {
-                text: "(7) Undisclosed",
-                f: (function(input) { return 'Prefer not to answer. Sorry.' == input; })
-            },
-            {
-                text: "(4) & (5) & (6) University-level education",
-                f: (function(input) { return 'Doctorate' == input || 'Bachelor\'s degree' == input || 'Master\'s degree' == input; })
-            },
+            {text: "(1) High school or less", f: (function(input) { return 'High school or less' == input; })},
+            {text: "(2) Certificates and/or other accreditation", f: (function(input) { return 'Certificates and/or other accreditation' == input; })},
+            {text: "(3) College (A-level, Baccalaureate)", f: (function(input) { return 'College (A-level, Baccalaureate)' == input; })},
+            {text: "(4) Bachelor\'s degree", f: (function(input) { return 'Bachelor\'s degree' == input; })},
+            {text: "(5) Master\'s degree", f: (function(input) { return 'Master\'s degree' == input; })},
+            {text: "(6) Doctorate", f: (function(input) { return 'Doctorate' == input; })},
+            {text: "(7) Undisclosed", f: (function(input) { return 'Prefer not to answer. Sorry.' == input; })},
+            {text: "(4) & (5) & (6) University-level education", f: (function(input) { return 'Doctorate' == input || 'Bachelor\'s degree' == input || 'Master\'s degree' == input; })}
         ]
     },
     {
         title: 'Employment',
         filters: [
-            { text: "(1) Full-time student ", f: (function(input) { return 'Full-time student' == input; })},  
-            { text: "(2) Part-time student ", f: (function(input) { return 'Part-time student' == input; })},  
-            { text: "(3) Part-time student & work", f: (function(input) { return 'Part-time student and part-time employment' == input; })},  
-            { text: "(4) Full-time student & work", f: (function(input) { return 'Full-time student and part-time employment' == input; })},  
-            { text: "(5) Full-time training", f: (function(input) { return 'Full-time vocational training' == input; })},  
-            { text: "(6) Unemployed", f: (function(input) { return 'Unemployed' == input; })},  
-            { text: "(7) Employed", f: (function(input) { return 'Employed' == input; })},  
-            { text: "(8) Self-employed", f: (function(input) { return 'Self-employed' == input; })},  
-            { text: "(9) Part-time work", f: (function(input) { return 'Part-time employment' == input; })},  
-            { text: "(10) Full-time parent/carer", f: (function(input) { return 'Full-time parent or carer' == input; })},  
-            { text: "(11) Retired", f: (function(input) { return 'Retired' == input; })},  
-            { text: "(12) Can't work (medical reasons)", f: (function(input) { return 'I do not work for health/medical reasons.' == input; })},  
-            { text: "(13) Undisclosed", f: (function(input) { return 'Prefer not to answer. Sorry.' == input; })},
-            { text: "(1) & (2) & (3) & (4) Student", f: (function(input) { 
-                return 'Full-time student' == input || 
-                    'Part-time student' == input ||
-                    'Part-time student and part-time employment' == input ||
-                    'Full-time student and part-time employment' == input
-            })}
+            {text: "(1) Full-time student ", f: (function(input) { return 'Full-time student' == input; })},  
+            {text: "(2) Part-time student ", f: (function(input) { return 'Part-time student' == input; })},  
+            {text: "(3) Part-time student & work", f: (function(input) { return 'Part-time student and part-time employment' == input; })},  
+            {text: "(4) Full-time student & work", f: (function(input) { return 'Full-time student and part-time employment' == input; })},  
+            {text: "(5) Full-time training", f: (function(input) { return 'Full-time vocational training' == input; })},  
+            {text: "(6) Unemployed", f: (function(input) { return 'Unemployed' == input; })},  
+            {text: "(7) Employed", f: (function(input) { return 'Employed' == input; })},  
+            {text: "(8) Self-employed", f: (function(input) { return 'Self-employed' == input; })},  
+            {text: "(9) Part-time work", f: (function(input) { return 'Part-time employment' == input; })},  
+            {text: "(10) Full-time parent/carer", f: (function(input) { return 'Full-time parent or carer' == input; })},  
+            {text: "(11) Retired", f: (function(input) { return 'Retired' == input; })},  
+            {text: "(12) Can't work (medical reasons)", f: (function(input) { return 'I do not work for health/medical reasons.' == input; })},  
+            {text: "(13) Undisclosed", f: (function(input) { return 'Prefer not to answer. Sorry.' == input; })},
+            {text: "(1) & (2) & (3) & (4) Student", f: (function(input) {return 'Full-time student' == input || 'Part-time student' == input || 'Part-time student and part-time employment' == input || 'Full-time student and part-time employment' == input; })}
         ]
     },
     {
         title: 'Religious upbringing',
         filters: [
-            {
-                text: "(1) Atheist",
-                f: (function(input) { return 'Atheist or no religious upbringing' == input; })
-            },
-            {
-                text: "(2) Agnostic",
-                f: (function(input) { return 'Agnostic' == input; })
-            },
-            {
-                text: "(3) Christian: Roman Catholic",
-                f: (function(input) { return 'Christian: Roman Catholic' == input; })
-            },
-            {
-                text: "(4) Christian: Protestant",
-                f: (function(input) { return 'Christian: Protestant (Anglican, Lutheran, Baptist, etc)' == input; })
-            },
-            {
-                text: "(5) Christian: Orthodox",
-                f: (function(input) { return 'Christian: Orthodox' == input; })
-            },
-            {
-                text: "(6) Christian: Non denominational",
-                f: (function(input) { return 'Christian: Non denominational / Other' == input; })
-            },
-            {
-                text: "(7) Islamic: Sunni",
-                f: (function(input) { return 'Islamic: Sunni' == input; })
-            },
-            {
-                text: "(8) Islamic: Shia",
-                f: (function(input) { return 'Islamic: Shia' == input; })
-            },
-            {
-                text: "(9) Islamic: Sufism",
-                f: (function(input) { return 'Islamic: Sufism' == input; })
-            },
-            {
-                text: "(10) Islamic: Non denominational",
-                f: (function(input) { return 'Islamic: Non denomination / Other' == input; })
-            },
-            {
-                text: "(11) Jewish: Orthodox",
-                f: (function(input) { return 'Jewish: Orthodox' == input; })
-            },
-            {
-                text: "(12) Jewish: Conservative",
-                f: (function(input) { return 'Jewish: Conservative' == input; })
-            },
-            {
-                text: "(13) Jewish: Reform",
-                f: (function(input) { return 'Jewish: Reform' == input; })
-            },
-            {
-                text: "(14) Jewish: Orthodox",
-                f: (function(input) { return 'Jewish: Orthodox' == input; })
-            },
-            {
-                text: "(15) Jewish: Other",
-                f: (function(input) { return 'Jewish: Other' == input; })
-            },
-            {
-                text: "(16) Baha'i",
-                f: (function(input) { return 'Baha\'i' == input; })
-            },
-            {
-                text: "(17) Buddhism: Theravada",
-                f: (function(input) { return 'Buddhism: Theravada' == input; })
-            },
-            {
-                text: "(18) Buddhism: Mahayana",
-                f: (function(input) { return 'Buddhism: Mahayana' == input; })
-            },
-            {
-                text: "(19) Buddhism: Other",
-                f: (function(input) { return 'Buddhism: Other' == input; })
-            },
-            {
-                text: "(20) Hinduism: Smartism",
-                f: (function(input) { return 'Hinduism: Smartism' == input; })
-            },
-            {
-                text: "(21) Hinduism: Vaishnavism",
-                f: (function(input) { return 'Hinduism: Vaishnavism' == input; })
-            },
-            {
-                text: "(22) Hinduism: Other",
-                f: (function(input) { return 'Hinduism: Other' == input; })
-            },
-            {
-                text: "(23) Sikhism",
-                f: (function(input) { return 'Sikhism' == input; })
-            },
-            {
-                text: "(24) Shinto",
-                f: (function(input) { return 'Shinto' == input; })
-            },
-            {
-                text: "(25) Confucianism",
-                f: (function(input) { return 'Confucianism' == input; })
-            },
-            {
-                text: "(26) Taoism",
-                f: (function(input) { return 'Taoism' == input; })
-            },
-            {
-                text: "(27) Taoism",
-                f: (function(input) { return 'Taoism' == input; })
-            },
-            {
-                text: "(28) Zoroastrianism",
-                f: (function(input) { return 'Zoroastrianism' == input; })
-            },
-            {
-                text: "(29) Rastafarianism",
-                f: (function(input) { return 'Rastafarianism' == input; })
-            },
-            {
-                text: "(30) Neopagan / Wicca / Druidic",
-                f: (function(input) { return 'Neopagan / Wicca / Druidic' == input; })
-            },
-            {
-                text: "(31) Spiritualist",
-                f: (function(input) { return 'Spiritualist' == input; })
-            },
-            {
-                text: "(32) Animism / Indigenous",
-                f: (function(input) { return 'Animism / Indigenous' == input; })
-            },
-            {
-                text: "(33) Mixed religious beliefs",
-                f: (function(input) { return 'Mixed religious beliefs' == input; })
-            },
-            {
-                text: "(34) Other",
-                f: (function(input) { return 'Other' == input; })
-            },
-            {
-                text: "(35) Undisclosed",
-                f: (function(input) { return 'Prefer not to answer. Sorry.' == input; })
-            },
-            {
-                text: "(3) & (4) & (5) & (6) Christian",
-                f: (function(input) { return 'Christian: Roman Catholic' == input ||
-                                      'Christian: Protestant (Anglican, Lutheran, Baptist, etc)' == input ||
-                                      'Christian: Orthodox' == input ||
-                                      'Christian: Non denominational / Other' == input; })
-            },
-            {
-                text: "(7) & (8) & (9) & (10) Muslim",
-                f: (function(input) { return 'Islamic: Sunni' == input ||
-                                      'Islamic: Shia' == input ||
-                                      'Islamic: Sufism' == input ||
-                                      'Islamic: Non denomination / Other' == input; })
-            },
-            {
-                text: "(11) & (12) & (13) & (14) & (15) Jewish",
-                f: (function(input) { return 'Jewish: Orthodox' == input || 
-                                      'Jewish: Conservative' == input ||
-                                      'Jewish: Reform' == input ||
-                                      'Jewish: Orthodox' == input ||
-                                      'Jewish: Other' == input; })
-            },
+            {text: "(1) Atheist", f: (function(input) { return 'Atheist or no religious upbringing' == input; })            },
+            {text: "(2) Agnostic", f: (function(input) { return 'Agnostic' == input; })},
+            {text: "(3) Christian: Roman Catholic", f: (function(input) { return 'Christian: Roman Catholic' == input; })},
+            {text: "(4) Christian: Protestant", f: (function(input) { return 'Christian: Protestant (Anglican, Lutheran, Baptist, etc)' == input; })},
+            {text: "(5) Christian: Orthodox", f: (function(input) { return 'Christian: Orthodox' == input; })},
+            {text: "(6) Christian: Non denominational", f: (function(input) { return 'Christian: Non denominational / Other' == input; })},
+            {text: "(7) Islamic: Sunni", f: (function(input) { return 'Islamic: Sunni' == input; })},
+            {text: "(8) Islamic: Shia", f: (function(input) { return 'Islamic: Shia' == input; })},
+            {text: "(9) Islamic: Sufism", f: (function(input) { return 'Islamic: Sufism' == input; })},
+            {text: "(10) Islamic: Non denominational", f: (function(input) { return 'Islamic: Non denomination / Other' == input; })},
+            {text: "(11) Jewish: Orthodox", f: (function(input) { return 'Jewish: Orthodox' == input; })},
+            {text: "(12) Jewish: Conservative", f: (function(input) { return 'Jewish: Conservative' == input; })},
+            {text: "(13) Jewish: Reform", f: (function(input) { return 'Jewish: Reform' == input; })},
+            {text: "(14) Jewish: Orthodox", f: (function(input) { return 'Jewish: Orthodox' == input; })},
+            {text: "(15) Jewish: Other", f: (function(input) { return 'Jewish: Other' == input; })},
+            {text: "(16) Baha'i", f: (function(input) { return 'Baha\'i' == input; })},
+            {text: "(17) Buddhism: Theravada", f: (function(input) { return 'Buddhism: Theravada' == input; })},
+            {text: "(18) Buddhism: Mahayana", f: (function(input) { return 'Buddhism: Mahayana' == input; })},
+            {text: "(19) Buddhism: Other", f: (function(input) { return 'Buddhism: Other' == input; })},
+            {text: "(20) Hinduism: Smartism", f: (function(input) { return 'Hinduism: Smartism' == input; })},
+            {text: "(21) Hinduism: Vaishnavism", f: (function(input) { return 'Hinduism: Vaishnavism' == input; })},
+            {text: "(22) Hinduism: Other", f: (function(input) { return 'Hinduism: Other' == input; })},
+            {text: "(23) Sikhism", f: (function(input) { return 'Sikhism' == input; })},
+            {text: "(24) Shinto", f: (function(input) { return 'Shinto' == input; })},
+            {text: "(25) Confucianism", f: (function(input) { return 'Confucianism' == input; })},
+            {text: "(26) Taoism", f: (function(input) { return 'Taoism' == input; })},
+            {text: "(27) Taoism", f: (function(input) { return 'Taoism' == input; })},
+            {text: "(28) Zoroastrianism", f: (function(input) { return 'Zoroastrianism' == input; })},
+            {text: "(29) Rastafarianism", f: (function(input) { return 'Rastafarianism' == input; })},
+            {text: "(30) Neopagan / Wicca / Druidic", f: (function(input) { return 'Neopagan / Wicca / Druidic' == input; })},
+            {text: "(31) Spiritualist", f: (function(input) { return 'Spiritualist' == input; })},
+            {text: "(32) Animism / Indigenous", f: (function(input) { return 'Animism / Indigenous' == input; })},
+            {text: "(33) Mixed religious beliefs", f: (function(input) { return 'Mixed religious beliefs' == input; })},
+            {text: "(34) Other", f: (function(input) { return 'Other' == input; })},
+            {text: "(35) Undisclosed", f: (function(input) { return 'Prefer not to answer. Sorry.' == input; })},
+            {text: "(3) & (4) & (5) & (6) Christian", f: (function(input) { return 'Christian: Roman Catholic' == input || 'Christian: Protestant (Anglican, Lutheran, Baptist, etc)' == input || 'Christian: Orthodox' == input || 'Christian: Non denominational / Other' == input; })},
+            {text: "(7) & (8) & (9) & (10) Muslim", f: (function(input) { return 'Islamic: Sunni' == input || 'Islamic: Shia' == input || 'Islamic: Sufism' == input || 'Islamic: Non denomination / Other' == input; })},
+            {text: "(11) & (12) & (13) & (14) & (15) Jewish", f: (function(input) { return 'Jewish: Orthodox' == input || 'Jewish: Conservative' == input || 'Jewish: Reform' == input || 'Jewish: Orthodox' == input || 'Jewish: Other' == input; })}
         ]
     },
     {
@@ -437,88 +219,34 @@ var QUESTIONS = [
     {
         title: 'Strength of belief',
         filters: [
-            {
-                text: "(1) Very Important",
-                f: (function(input) { return '5' == input; })
-            },
-            {
-                text: "(2) Somewhat important",
-                f: (function(input) { return '4' == input; })
-            },
-            {
-                text: "(3) Neutral",
-                f: (function(input) { return '3' == input; })
-            },
-            {
-                text: "(4) Somewhat unimportant",
-                f: (function(input) { return '2' == input; })
-            },
-            {
-                text: "(5) Negligible",
-                f: (function(input) { return '1' == input; })
-            },
-            {
-                text: "(1) & (2) Important",
-                f: (function(input) { return '5' == input || '4' == input; })
-            },
-            {
-                text: "(4) & (5) Not Important",
-                f: (function(input) { return '1' == input || '2' == input; })
-            }
+            {text: "(1) Very Important", f: (function(input) { return '5' == input; })},
+            {text: "(2) Somewhat important", f: (function(input) { return '4' == input; })},
+            {text: "(3) Neutral", f: (function(input) { return '3' == input; })},
+            {text: "(4) Somewhat unimportant", f: (function(input) { return '2' == input; })},
+            {text: "(5) Negligible", f: (function(input) { return '1' == input; })},
+            {text: "(1) & (2) Important", f: (function(input) { return '5' == input || '4' == input; })},
+            {text: "(4) & (5) Not Important", f: (function(input) { return '1' == input || '2' == input; })}
         ]
     },
     {
         title: 'User of illegal drugs in own country',
         filters: [
-            {
-                text: "No. Never.",
-                f: (function(input) { return 'No. Never.' == input; })
-            },
-            {
-                text: "Not anymore, but did in the past.",
-                f: (function(input) { return 'Not anymore, but I did in the past.' == input; })
-            },
-            {
-                text: "Yes.",
-                f: (function(input) { return 'Yes.' == input; })
-            },
-            {
-                text: "Prefer not to answer. Sorry.",
-                f: (function(input) { return 'Prefer not to answer. Sorry.' == input; })
-            }
+            {text: "No. Never.", f: (function(input) { return 'No. Never.' == input; })},
+            {text: "Not anymore, but did in the past.", f: (function(input) { return 'Not anymore, but I did in the past.' == input; })},
+            {text: "Yes.", f: (function(input) { return 'Yes.' == input; })},
+            {text: "Prefer not to answer. Sorry.", f: (function(input) { return 'Prefer not to answer. Sorry.' == input; })}
         ]
     },
     {
         title: 'View on cannabis',
         filters: [
-            {
-                text: "Already legalised or decriminalised in own country, supports it.",
-                f: (function(input) { return 'Is currently legal or decriminalized in my country. I support it.' == input; })
-            },
-            {
-                text: "Fully support legalisation",
-                f: (function(input) { return 'I fully support legalization.' == input; })
-            },
-            {
-                text: "Support decriminalisation for personal use, but not legalisation",
-                f: (function(input) { return 'I support decriminalization for personal use, but not legalization.' == input; })
-            },
-            {
-                text: "Indifferent and/or don't care.",
-                f: (function(input) { return 'I\'m indifferent and/or don\'t care.' == input; })
-            },
-            {
-                text: "Do not support decriminalization or legalisation.",
-                f: (function(input) { return 'I do not support decriminalization or legalization.' == input; })
-            },
-            {
-                text: "Already legal or decriminalized in own country, opposes it.",
-                f: (function(input) { return 'Is currently legal or decriminalized in my country. I oppose it.' == input; })
-            },
-            {
-                text: "Undisclosed",
-                f: (function(input) { return 'Prefer not to answer. Sorry.' == input; })
-            }
+            {text: "Already legalised or decriminalised in own country, supports it.", f: (function(input) { return 'Is currently legal or decriminalized in my country. I support it.' == input; })},
+            {text: "Fully support legalisation", f: (function(input) { return 'I fully support legalization.' == input; })},
+            {text: "Support decriminalisation for personal use, but not legalisation", f: (function(input) { return 'I support decriminalization for personal use, but not legalization.' == input; })},
+            {text: "Indifferent and/or don't care.", f: (function(input) { return 'I\'m indifferent and/or don\'t care.' == input; })},
+            {text: "Do not support decriminalization or legalisation.", f: (function(input) { return 'I do not support decriminalization or legalization.' == input; })},
+            {text: "Already legal or decriminalized in own country, opposes it.", f: (function(input) { return 'Is currently legal or decriminalized in my country. I oppose it.' == input; })},
+            {text: "Undisclosed", f: (function(input) { return 'Prefer not to answer. Sorry.' == input; })}
         ]
     },
     {
@@ -536,470 +264,300 @@ var QUESTIONS = [
     {
         title: 'Level of pirating',
         filters: [
-            {
-                text: "Hardcore pirate.",
-                f: (function(input) { return 'I\'m a hardcore pirate (private trackers, Usenet subscription, seedboxes, etc)' == input; })
-            },
-            {
-                text: "Pirates digital media heavily.",
-                f: (function(input) { return 'I pirate digital media heavily.' == input; })
-            },
-            {
-                text: "Pirates digital media regularly.",
-                f: (function(input) { return 'I pirate digital media regularly.' == input; })
-            },
-            {
-                text: "Occasionally downloads illegally.",
-                f: (function(input) { return 'I occasionally download illegally.' == input; })
-            },
-            {
-                text: "Rarely download illegally.",
-                f: (function(input) { return 'I rarely download illegally.' == input; })
-            },
-            {
-                text: "Have never downloaded anything illegally.",
-                f: (function(input) { return 'I have never downloaded anything illegally.' == input; })
-            },
-            {
-                text: "Undisclosed",
-                f: (function(input) { return 'Prefer not to answer. Sorry.' == input; })
-            }
+            {text: "Hardcore pirate.", f: (function(input) { return 'I\'m a hardcore pirate (private trackers, Usenet subscription, seedboxes, etc)' == input; })},
+            {text: "Pirates digital media heavily.", f: (function(input) { return 'I pirate digital media heavily.' == input; })},
+            {text: "Pirates digital media regularly.", f: (function(input) { return 'I pirate digital media regularly.' == input; })},
+            {text: "Occasionally downloads illegally.", f: (function(input) { return 'I occasionally download illegally.' == input; })},
+            {text: "Rarely download illegally.", f: (function(input) { return 'I rarely download illegally.' == input; })},
+            {text: "Have never downloaded anything illegally.", f: (function(input) { return 'I have never downloaded anything illegally.' == input; })},
+            {text: "Undisclosed", f: (function(input) { return 'Prefer not to answer. Sorry.' == input; })}
         ]
     },
     {
         title: 'Purchasing digital media through legal mediums',
         filters: [
-            {
-                text: "Yes",
-                f: (function(input) { return 'Yes' == input; })
-            },
-            {
-                text: "Sometimes",
-                f: (function(input) { return 'Sometimes' == input; })
-            },
-            {
-                text: "Rarely",
-                f: (function(input) { return 'Rarely' == input; })
-            },
-            {
-                text: "Never",
-                f: (function(input) { return 'Never' == input; })
-            },
-            {
-                text: "Undisclosed",
-                f: (function(input) { return 'Prefer not to answer. Sorry.' == input; })
-            }
+            {text: "Yes", f: (function(input) { return 'Yes' == input; })},
+            {text: "Sometimes", f: (function(input) { return 'Sometimes' == input; })},
+            {text: "Rarely", f: (function(input) { return 'Rarely' == input; })},
+            {text: "Never", f: (function(input) { return 'Never' == input; })},
+            {text: "Undisclosed", f: (function(input) { return 'Prefer not to answer. Sorry.' == input; })}
         ]
     },
     {
-        title: 'Sharing of digital media should be legal', // 20
+        title: 'Sharing of digital media should be legal',
         filters: []
     },
     {
-        title: 'Sharing of digital media damages the industry', // 21
+        title: 'Sharing of digital media damages the industry',
         filters: []
     },
     {
-        title: 'Homosexual behaviour is natural', // 22
+        title: 'Homosexual behaviour is natural',
         filters: []
     },
     {
-        title: 'Homosexual behaviour is moral', // 23
+        title: 'Homosexual behaviour is moral',
         filters: []
     },
     {
-        title: 'Homosexual behaviour should be legal', // 24
+        title: 'Homosexual behaviour should be legal',
         filters: []
     },
     {
-        title: 'Gay marriage should be legal', // 25
+        title: 'Gay marriage should be legal',
         filters: []
     },
     {
-        title: 'Humans should aspire to life-long monogamous relationships', // 26
+        title: 'Humans should aspire to life-long monogamous relationships',
         filters: []
     },
     {
-        title: 'Age of consent should be same for heterosexual and homosexual sex', // 27
+        title: 'Age of consent should be same for heterosexual and homosexual sex',
         filters: []
     },
     {
-        title: 'Prostitution should be legal', // 28
+        title: 'Prostitution should be legal',
         filters: []
     },
     {
-        title: 'Ephebophilia should be treated differently from paedophilia ', // 29
+        title: 'Ephebophilia should be treated differently from paedophilia ',
         filters: []
     },
     {
-        title: 'Age of consent in country is...', // 30
+        title: 'Age of consent in country is...',
         filters: [
-            {
-                text: "Just right",
-                f: (function(input) { return 'Just right' == input; })
-            },
-            {
-                text: "Too high",
-                f: (function(input) { return 'Too high' == input; })
-            },
-            {
-                text: "Too low",
-                f: (function(input) { return 'Too low' == input; })
-            },
-            {
-                text: "No opinion",
-                f: (function(input) { return 'No opinion.' == input; })
-            },
-            {
-                text: "Undisclosed",
-                f: (function(input) { return 'Prefer not to answer. Sorry.' == input; })
-            }
+            {text: "Just right", f: (function(input) { return 'Just right' == input; })},
+            {text: "Too high", f: (function(input) { return 'Too high' == input; })},
+            {text: "Too low", f: (function(input) { return 'Too low' == input; })},
+            {text: "No opinion", f: (function(input) { return 'No opinion.' == input; })},
+            {text: "Undisclosed", f: (function(input) { return 'Prefer not to answer. Sorry.' == input; })}
         ]
     },
     {
-        title: 'All ethnicities should be treated equally', // 31
+        title: 'All ethnicities should be treated equally',
         filters: []
     },
     {
-        title: 'It is possible to predict someone\'s behaviour based on ethnicity', // 32
+        title: 'It is possible to predict someone\'s behaviour based on ethnicity',
         filters: []
     },
     {
-        title: 'Racial slurs are completely unacceptable in public', // 33
+        title: 'Racial slurs are completely unacceptable in public',
         filters: []
     },
     {
-        title: 'Racial slurs are completely unacceptable in private/between friends', // 34
+        title: 'Racial slurs are completely unacceptable in private/between friends',
         filters: []
     },
     {
-        title: 'All religions should be treated with respect', // 35
+        title: 'All religions should be treated with respect',
         filters: []
     },
     {
-        title: 'Views on Romani/Gypsy people are generally...', // 36
+        title: 'Views on Romani/Gypsy people are generally...',
         filters: []
     },
     {
-        title: 'Feelings on the EU are generally', // 37
+        title: 'Feelings on the EU are generally',
         filters: []
     },
     {
-        title: 'Feelings on the €uro are...', // 38
+        title: 'Feelings on the €uro are...',
         filters: []
     },
     {
-        title: 'Feelings about further EU integration are...', // 39
+        title: 'Feelings about further EU integration are...',
         filters: []
     },
     {
-        title: 'Feelings about government welfare are...', // 40
+        title: 'Feelings about government welfare are...',
         filters: []
     },
     {
-        title: 'Feelings about American influence in Europe are...', // 41
+        title: 'Feelings about American influence in Europe are...',
         filters: []
     },
     {
-        title: 'Feelings about America as a superpower are...', // 42
+        title: 'Feelings about America as a superpower are...',
         filters: []
     },
     {
-        title: 'Feelings about Chinese influence in Europe are...', // 43
+        title: 'Feelings about Chinese influence in Europe are...',
         filters: []
     },
     {
-        title: 'Feelings about China as a future superpower are...', // 44
+        title: 'Feelings about China as a future superpower are...',
         filters: []
     },
     {
-        title: 'Feelings about migration from rest of EU to my country are...', // 45
+        title: 'Feelings about migration from rest of EU to my country are...',
         filters: []
     },
     {
-        title: 'Feelings about immigration from outside of the EU to my country are...', // 46
+        title: 'Feelings about immigration from outside of the EU to my country are...',
         filters: []
     },
     {
-        title: 'The EU should have a shared armed forces', // 47
+        title: 'The EU should have a shared armed forces',
         filters: []
     },
     {
-        title: 'The EU should maintain its own military', // 48
+        title: 'The EU should maintain its own military',
         filters: []
     },
     {
-        title: 'European nations should maintain nuclear capability', // 49
+        title: 'European nations should maintain nuclear capability',
         filters: []
     },
     {
-        title: 'There should be a right to anonymity on the internet', // 50
+        title: 'There should be a right to anonymity on the internet',
         filters: []
     },
     {
-        title: 'Government surveillance is a growing problem in Europe', // 51
+        title: 'Government surveillance is a growing problem in Europe',
         filters: []
     },
     {
-        title: 'Feelings about PRISM and/or the NSA', // 52
+        title: 'Feelings about PRISM and/or the NSA',
         filters: [
-            {
-                text: "Already have and/or from now on encrypting everything I do online.",
-                f: (function(input) { return 'I already have and/or from now on encrypting everything I do online.' == input; })
-            },
-            {
-                text: "Going to be more conscientious of the services I use online.",
-                f: (function(input) { return 'I\'m going to be more conscientious of the services I use and the things I do online.' == input; })
-            },
-            {
-                text: "Going to continue doing what I've always been doing.",
-                f: (function(input) { return 'I\'m going to continue doing what I\'ve always been doing.' == input; })
-            },
-            {
-                text: "Don't know and/or care.",
-                f: (function(input) { return 'I don\'t know and/or care.' == input; })
-            } 
+            {text: "Already have and/or from now on encrypting everything I do online.", f: (function(input) { return 'I already have and/or from now on encrypting everything I do online.' == input; })},
+            {text: "Going to be more conscientious of the services I use online.", f: (function(input) { return 'I\'m going to be more conscientious of the services I use and the things I do online.' == input; })},
+            {text: "Going to continue doing what I've always been doing.", f: (function(input) { return 'I\'m going to continue doing what I\'ve always been doing.' == input; })},
+            {text: "Don't know and/or care.", f: (function(input) { return 'I don\'t know and/or care.' == input; })} 
         ]
     },
     {
-        title: 'Feelings about Scotland\'s independence?', // 53
+        title: 'Feelings about Scotland\'s independence?',
         filters: [
-            {
-                text: "Support independence.",
-                f: (function(input) { return 'I support independence.' == input; })
-            },
-            {
-                text: "Oppose independence",
-                f: (function(input) { return 'I do not support independence.' == input; })
-            },
-            {
-                text: "I don't know and/or care.",
-                f: (function(input) { return 'I don\'t know and/or care.' == input; })
-            }
+            {text: "Support independence.", f: (function(input) { return 'I support independence.' == input; })},
+            {text: "Oppose independence", f: (function(input) { return 'I do not support independence.' == input; })},
+            {text: "I don't know and/or care.", f: (function(input) { return 'I don\'t know and/or care.' == input; })}
         ]
     },
     {
-        title: 'Is Turkey a part of Europe?', // 54
+        title: 'Is Turkey a part of Europe?',
         filters: [
-            {
-                text: "Yes.",
-                f: (function(input) { return 'Yes.' == input; })
-            },
-            {
-                text: "No.",
-                f: (function(input) { return 'No.' == input; })
-            },
-            {
-                text: "I don't know and/or care.",
-                f: (function(input) { return 'I don\'t know and/or care.' == input; })
-            }
+            {text: "Yes.", f: (function(input) { return 'Yes.' == input; })},
+            {text: "No.", f: (function(input) { return 'No.' == input; })},
+            {text: "I don't know and/or care.", f: (function(input) { return 'I don\'t know and/or care.' == input; })}
         ]
     },
     {
-        title: 'Would you support Turkey in the EU?', // 55
+        title: 'Would you support Turkey in the EU?', 
         filters: [
-            {
-                text: "Yes.",
-                f: (function(input) { return 'Yes.' == input; })
-            },
-            {
-                text: "No.",
-                f: (function(input) { return 'No.' == input; })
-            },
-            {
-                text: "I don't know and/or care.",
-                f: (function(input) { return 'I don\'t know and/or care.' == input; })
-            }
+            {text: "Yes.", f: (function(input) { return 'Yes.' == input; })},
+            {text: "No.", f: (function(input) { return 'No.' == input; })},
+            {text: "I don't know and/or care.", f: (function(input) { return 'I don\'t know and/or care.' == input; })}
         ]
     },
     {
-        title: 'Current immigration policies need to be rethought', // 56
+        title: 'Current immigration policies need to be rethought',
         filters: []
     },
     {
-        title: 'Activity level on /r/europe', // 57
+        title: 'Activity level on /r/europe',
         filters: [
-            {
-                text: "(1) Very active: 5+ hours every week",
-                f: (function(input) { return 'Very Active: 5+ hours every week' == input; })
-            },
-            {
-                text: "(2) Active: 1+ hour every week",
-                f: (function(input) { return 'Active: 1+ hour every week' == input; })
-            },
-            {
-                text: "(3) Regular: A few minutes here and there",
-                f: (function(input) { return 'Regular: A few minutes here and there' == input; })
-            },
-            {
-                text: "(4) Not active: Visit sometimes, if ever",
-                f: (function(input) { return 'Not active: You visit sometimes, if ever' == input; })
-            },
-            {
-                text: "(1) & (2) & (3) Active",
-                f: (function(input) { return 'Very Active: 5+ hours every week' == input ||
-                                      'Active: 1+ hour every week' == input ||
-                                      'Regular: A few minutes here and there' == input;})
-            },
+            {text: "(1) Very active: 5+ hours every week", f: (function(input) { return 'Very Active: 5+ hours every week' == input; })},
+            {text: "(2) Active: 1+ hour every week", f: (function(input) { return 'Active: 1+ hour every week' == input; })},
+            {text: "(3) Regular: A few minutes here and there", f: (function(input) { return 'Regular: A few minutes here and there' == input; })},
+            {text: "(4) Not active: Visit sometimes, if ever", f: (function(input) { return 'Not active: You visit sometimes, if ever' == input; })},
+            {text: "(1) & (2) & (3) Active", f: (function(input) { return 'Very Active: 5+ hours every week' == input || 'Active: 1+ hour every week' == input || 'Regular: A few minutes here and there' == input;})}
         ]
     },
     {
-        title: 'Activity level on own country subreddit', // 58
+        title: 'Activity level on own country subreddit',
         filters: [
-            {
-                text: "Visit /r/europe more often",
-                f: (function(input) { return 'Yes, I visit /r/europe more often.' == input; })
-            },
-            {
-                text: "About the same as /r/europe",
-                f: (function(input) { return 'Eh, about the same.' == input; })
-            },
-            {
-                text: "Visit country's subreddit more often than /r/europe",
-                f: (function(input) { return 'No, I visit my country\'s subreddit more often.' == input; })
-            },
-            {
-                text: "Doesn't know",
-                f: (function(input) { return 'I don\'t know.' == input; })
-            }
+            {text: "Visit /r/europe more often", f: (function(input) { return 'Yes, I visit /r/europe more often.' == input; })},
+            {text: "About the same as /r/europe", f: (function(input) { return 'Eh, about the same.' == input; })},
+            {text: "Visit country's subreddit more often than /r/europe", f: (function(input) { return 'No, I visit my country\'s subreddit more often.' == input; })},
+            {text: "Doesn't know", f: (function(input) { return 'I don\'t know.' == input; })}
         ]
     },
     {
-        title: 'The content submitted to /r/europe is...', // 59
+        title: 'The content submitted to /r/europe is...',
         filters: []
     },
     {
-        title: 'The comment threads on /r/europe are...', // 60
+        title: 'The comment threads on /r/europe are...',
         filters: []
     },
     {
-        title: 'The moderators on /r/europe are...', // 61
+        title: 'The moderators on /r/europe are...',
         filters: []
     },
     {
-        title: 'The /r/europe community is...', // 62
+        title: 'The /r/europe community is...',
         filters: []
     },
     {
-        title: 'Racism is a problem in /r/europe...', // 63
+        title: 'Racism is a problem in /r/europe...',
         filters: []
     },
     {
-        title: 'Racism should result in an immediate ban from /r/europe', // 64
+        title: 'Racism should result in an immediate ban from /r/europe',
         filters: []
     },
     {
-        title: 'Feelings about Eurovision', // 65
+        title: 'Feelings about Eurovision',
         filters: []
     },
     {
-        title: 'The European country with the silliest accent', // 66
+        title: 'The European country with the silliest accent',
         filters: []
     },
     {
-        title: 'The European country with the the most attractive citizens', // 67
+        title: 'The European country with the the most attractive citizens',
         filters: []
     },
     {
-        title: 'The European country that can drink the most', // 68
+        title: 'The European country that can drink the most',
         filters: []
     },
     {
-        title: 'The European country that\'s your favourite, apart from your own', // 69
+        title: 'The European country that\'s your favourite, apart from your own',
         filters: []
     },
     {
-        title: 'The European country that\'s your least favourite', // 70
+        title: 'The European country that\'s your least favourite',
         filters: []
     },
     {
-        title: 'The European country that would give you the biggest culture shock', // 71
+        title: 'The European country that would give you the biggest culture shock',
         filters: []
     },
     {
-        title: 'The European country with the worst sense of humour', // 72
+        title: 'The European country with the worst sense of humour',
         filters: [
-            {
-                text: "Germany",
-                f: (function(input) { return 'Germany' == input; })
-            },
-            {
-                text: "I am German and do not find this funny.",
-                f: (function(input) { return 'I am German and do not find this funny.' == input; })
-            }
+            {text: "Germany", f: (function(input) { return 'Germany' == input; })},
+            {text: "I am German and do not find this funny.", f: (function(input) { return 'I am German and do not find this funny.' == input; })}
         ]
     },
     {
-        title: 'The European country that loves to complain', // 73
+        title: 'The European country that loves to complain',
         filters: [
-            {
-                text: "United Kingdom",
-                f: (function(input) { return 'United Kingdom' == input; })
-            },
-            {
-                text: "United Kingdom, and I fart in their general direction.",
-                f: (function(input) { return 'United Kingdom, and I fart in their general direction.' == input; })
-            },
-            {
-                text: "I am British and this question does not sit well with me!",
-                f: (function(input) { return 'I am British and this question does not sit well with me!' == input; })
-            }
+            {text: "United Kingdom", f: (function(input) { return 'United Kingdom' == input; })},
+            {text: "United Kingdom, and I fart in their general direction.", f: (function(input) { return 'United Kingdom, and I fart in their general direction.' == input; })},
+            {text: "I am British and this question does not sit well with me!", f: (function(input) { return 'I am British and this question does not sit well with me!' == input; })}
         ]
     },
     {
-        title: 'Favourite moderator', // 74
+        title: 'Favourite moderator',
         filters: [
-            {
-                text: "kitestramuort",
-                f: (function(input) { return 'kitestramuort' == input; })
-            },
-            {
-                text: "Raerth",
-                f: (function(input) { return 'Raerth' == input; })
-            },
-            {
-                text: "TheSkyNet",
-                f: (function(input) { return 'TheSkyNet' == input; })
-            },
-            {   
-                text: "SpAn12",
-                f: (function(input) { return 'SpAn12' == input; })
-            },
-            {
-                text: "gschizas",
-                f: (function(input) { return 'gschizas' == input; })
-            },
-            {
-                text: "Bezbojnicul",
-                f: (function(input) { return 'Bezbojnicul' == input; })
-            },
-            {
-                text: "davidreiss666",
-                f: (function(input) { return 'davidreiss666' == input; })
-            },
-            {
-                text: "Skuld",
-                f: (function(input) { return 'Skuld' == input; })
-            },
-            {
-                text: "JB_UK",
-                f: (function(input) { return 'JB_UK' == input; })
-            },
-            {
-                text: "metaleks",
-                f: (function(input) { return 'metaleks' == input; })
-            },
-            {
-                text: "Aschebescher",
-                f: (function(input) { return 'Aschebescher' == input; })
-            },
-            {
-                text: "They're all bad and they should feel bad.",
-                f: (function(input) { return 'They\'re all bad and they should feel bad.' == input; })
-            }
+            {text: "kitestramuort", f: (function(input) { return 'kitestramuort' == input; })},
+            {text: "Raerth", f: (function(input) { return 'Raerth' == input; })},
+            {text: "TheSkyNet", f: (function(input) { return 'TheSkyNet' == input; })},
+            {text: "SpAn12", f: (function(input) { return 'SpAn12' == input; })},
+            {text: "gschizas", f: (function(input) { return 'gschizas' == input; })},
+            {text: "Bezbojnicul", f: (function(input) { return 'Bezbojnicul' == input; })},
+            {text: "davidreiss666", f: (function(input) { return 'davidreiss666' == input; })},
+            {text: "Skuld", f: (function(input) { return 'Skuld' == input; })},
+            {text: "JB_UK", f: (function(input) { return 'JB_UK' == input; })},
+            {text: "metaleks", f: (function(input) { return 'metaleks' == input; })},
+            {text: "Aschebescher", f: (function(input) { return 'Aschebescher' == input; })},
+            {text: "They're all bad and they should feel bad.", f: (function(input) { return 'They\'re all bad and they should feel bad.' == input; })}
         ]
     }
-]
+];
 
 // Both of these have a 1:1 correspondance.
 
@@ -1131,7 +689,7 @@ function prepare_countries() {
             {question_id: 63, filters: agree_format},
             {question_id: 64, filters: agree_format},
             {question_id: 65, filters: views_format}
-        ]
+        ];
 
         for (var i=0; i<questions.length; i++) {
             QUESTIONS[questions[i].question_id].filters = questions[i].filters;
@@ -1380,6 +938,36 @@ function colour_countries() {
     }
 }
 
+function hover_stats(country, r) {
+    var region = COUNTRIES[country].regions[r];
+    var box = "<div id='hover'>test</div>";
+
+    // Move da div!
+    INNER_IFRAME.getElementById(region).onmousemove = function(event) {
+        $("#hover").css({
+            top: $('iframe').offset().top + event.clientY,
+            left: event.screenX
+        });
+    }
+
+    // Create element on entering a country.
+    INNER_IFRAME.getElementById(region).onmouseover = function(event) {
+        console.log("MOUSEOVER!");
+        $("body").append(box);
+        $("#hover").css({
+            top: $('iframe').offset().top + event.clientY,
+            left: event.screenX
+        });
+        $("#hover").html(country);
+    }
+
+    // Destroy element on leaving a country.
+    INNER_IFRAME.getElementById(region).onmouseout = function(event) {
+        console.log("MOUSEOUT!");
+        $("#hover").remove();
+    }
+}
+
 $(document).ready(function() {
     $("#start_app").click(function(e) {
         e.preventDefault();
@@ -1388,6 +976,13 @@ $(document).ready(function() {
         IFRAME = document.getElementById('map_of_europe');
         INNER_IFRAME = IFRAME.contentDocument || IFRAME.contentWindow.document;
         prepare_countries();
+
+        // Bind hover to all regions.
+        for (var country in COUNTRIES) {
+            for (var r=0; r<COUNTRIES[country].regions.length; r++) {
+                hover_stats(country, r);
+            }
+        }
 
         $("#add_question").show();
         $("#add_question > a").click(function(e) {
