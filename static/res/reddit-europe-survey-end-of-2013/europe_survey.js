@@ -926,7 +926,7 @@ function colour_countries() {
             COUNTRIES[country].percentage = 0;
             COUNTRIES[country].colour = "#f0f0f0";
         } else {
-            var percentage = (COUNTRIES[country].total / TOTAL) * 100;
+            var percentage = ((COUNTRIES[country].total / TOTAL) * 100).toFixed(2);
             COUNTRIES[country].percentage = percentage; // Round to 2.
             COUNTRIES[country].colour = darken_colour(base_colour, -parseInt(percentage) * 10); // A simple scalar for greater variance.
         }
@@ -940,30 +940,33 @@ function colour_countries() {
 
 function hover_stats(country, r) {
     var region = COUNTRIES[country].regions[r];
-    var box = "<div id='hover'>test</div>";
+    var box = "<div id='hover'></div>";
 
     // Move da div!
     INNER_IFRAME.getElementById(region).onmousemove = function(event) {
+        var x_offset = $("#hover").width() / 2;
+        var y_offset = $("#hover").height() * 1.5;
+
         $("#hover").css({
-            top: $('iframe').offset().top + event.clientY,
-            left: event.screenX
+            top: $('iframe').offset().top + event.clientY - y_offset,
+            left: $('iframe').offset().left + event.clientX - x_offset
         });
     }
 
     // Create element on entering a country.
     INNER_IFRAME.getElementById(region).onmouseover = function(event) {
-        console.log("MOUSEOVER!");
         $("body").append(box);
         $("#hover").css({
             top: $('iframe').offset().top + event.clientY,
             left: event.screenX
         });
-        $("#hover").html(country);
+        $("#hover").html("<strong class='center'>" + country + "</strong><br/>" +
+                         "Percentage: " + COUNTRIES[country].percentage + "%<br/>" + 
+                         "Sample: " + COUNTRIES[country].total);
     }
 
     // Destroy element on leaving a country.
     INNER_IFRAME.getElementById(region).onmouseout = function(event) {
-        console.log("MOUSEOUT!");
         $("#hover").remove();
     }
 }
