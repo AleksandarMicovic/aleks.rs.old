@@ -767,12 +767,19 @@ function update_handlers() {
     // Removing already added questions.
     $(".remove_question").click(function(e) {
         e.preventDefault();
+        e.stopPropagation();
         var id = $(this).attr('id').split("remove_")[1];
-        var location_in_array = QUESTIONS_ADDED.indexOf(id);
-        QUESTIONS_ADDED.splice(location_in_array, 1);
-        FILTERS_ADDED.splice(location_in_array, 1);
-        $("#question_" + id).remove();
-        update_map(false);
+        var location_in_array = QUESTIONS_ADDED.indexOf(parseInt(id));
+
+        console.log(e);
+
+        if (~location_in_array) {
+            QUESTIONS_ADDED.splice(location_in_array, 1);
+            FILTERS_ADDED.splice(location_in_array, 1);
+
+            $("#question_" + id).remove();
+            update_map(false);
+        }
     });
 
     // Update the map on any filter change.
