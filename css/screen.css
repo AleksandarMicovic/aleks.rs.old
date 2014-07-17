@@ -1,15 +1,15 @@
 @font-face {
     font-family: PTSerifRegular;
-    src: url(/static/fonts/PT_Serif-Web-Regular.ttf);
+    src: url(/fonts/PT_Serif-Web-Regular.ttf);
 }
 
 @font-face {
     font-family: RobotoCondensedBold;
-    src: url(/static/fonts/RobotoCondensed-Bold.ttf);
+    src: url(/fonts/RobotoCondensed-Bold.ttf);
 }
 
 #container {
-    width: 90%;
+    width: 96%;
 }
 
 #navigation {
@@ -29,14 +29,14 @@
     overflow: hidden;
 }
 
-@media screen and (min-width: 52em) {
+@media screen and (min-width: 45em) {
     #container {
-        width: 50em;
+        width: 43em;
     }
 }
 
 body {
-    background-color: #ffffdd;
+    background-color: #FFFFDD;
 }
 
 #container {
@@ -49,7 +49,7 @@ body {
 
 #header {
     margin-top: 0.1em;
-    border-bottom: 5px double #444;
+    border-bottom: 5px double #555;
 }
 
 #header a {
@@ -63,7 +63,7 @@ body {
 
 #content {
     width:auto;
-    color: #444444;
+    color: #555555;
     padding: 0 1em 0 1em;
     font-family: PTSerifRegular;
     font-size: 1.1em;
@@ -80,7 +80,7 @@ body {
 }
 
 #header a:visited, #footer a:visited {
-    color: #444444;
+    color: #555555;
 }
 
 .small {
@@ -142,17 +142,25 @@ em {
     margin-bottom: 1em;
 }
 
+.post_footer {
+    text-align: center;
+}
 
 #footer {
     clear: both;
     color: #444444;
 }
 
-h1 {
+h1, h2 {
     font-size: 3em;
     font-family: RobotoCondensedBold;
     text-align: center;
     margin-bottom: 0.25em;
+}
+
+#content h2 {
+    font-size: 2.5em;
+    margin-top: 0.25em;
 }
 
 #navigation > ul {
@@ -168,19 +176,24 @@ h1 {
 }
 
 #navigation a {
-    color: #444444;
+    color: #555555;
 }
 
-#header a:hover, #content a:hover {
-    color: #08abff;
+#header a:hover, #content a:hover, #footer a:hover {
+    color: #6161FF;
 }
 
 #content ul {
-    margin: 1em 0 1em 4em;
+    margin: 1em 0 1em 2.5em;
 }
 
 #content ul li {
     margin-bottom: 0.5em;
+}
+
+#content > .info {
+    margin: 0.2em 0 0.75em 0;
+    text-align: center;
 }
 
 #footer {
@@ -193,10 +206,6 @@ h1 {
 #footer a {
     text-decoration: none;
     color: #000000;
-}
-
-#footer a:hover {
-    color: #08abff;
 }
 
 #footer table {
@@ -259,11 +268,7 @@ table th {
 }
 
 span.code {
-    border: 1px dotted #333333;
+    border: 1px dotted #555555;
     background-color: #fffff9;
     padding: 0em 0.2em 0em 0.2em;
-}
-
-h1 > a {
-    color: #ffffff;
 }

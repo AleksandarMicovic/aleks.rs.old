@@ -4,3 +4,8 @@ notes/*
 xcf/*
 build/*
 .DS_STORE
+_site
+_cache
+site
+site.o
+site.hi

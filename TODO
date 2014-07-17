@@ -1,4 +1,4 @@
 Future
 ======
 - Might want to group posts on archive page by month/year.
-- Fix the mimetype mismatch on fonts.
+- Generate a tag cloud.
