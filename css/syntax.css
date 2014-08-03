@@ -1,0 +1,24 @@
+pre.sourceCode {
+    font-family: mono;
+    font-size: 0.9em;
+    margin: 0 auto 0.5em auto;
+    padding: 0.5em;
+    background-color: #fdfdfd;
+    border: 1px dashed #ccc;
+    overflow-y: hidden;
+    overflow-x: auto;
+}
+
+.sourceCode span.kw { color: #007020; font-weight: bold; }
+.sourceCode span.dt { color: #902000; }
+.sourceCode span.dv { color: #40a070; }
+.sourceCode span.bn { color: #40a070; }
+.sourceCode span.fl { color: #40a070; }
+.sourceCode span.ch { color: #4070a0; }
+.sourceCode span.st { color: #4070a0; }
+.sourceCode span.co { color: #60a0b0; font-style: italic; }
+.sourceCode span.ot { color: #007020; }
+.sourceCode span.al { color: red; font-weight: bold; }
+.sourceCode span.fu { color: #06287e; }
+.sourceCode span.re { }
+.sourceCode span.er { color: red; font-weight: bold; }

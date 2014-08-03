@@ -42,7 +42,7 @@ site language =
     -- Render all pages in every language since language-specific URLs will
     -- point to different versions of the same document.
 
-    match (fromList ["pages/о_мени.md", "pages/about.md"]) $ do
+    match (all_pages) $ do
         route   $ niceRoute
         compile $ pandocCompiler
             >>= loadAndApplyTemplate "templates/base.html" (pageCtx language)
@@ -183,3 +183,7 @@ blog_pattern :: String -> Pattern
 blog_pattern language
     | language == "en" = "blog/*"
     | language == "sr" = "блог/*"
+
+-- TODO: Once I reach Haskell satori, find a way to do this elegantly per language.
+all_pages :: Pattern
+all_pages = fromList ["pages/о_мени.md", "pages/about.md", "pages/projects.md", "pages/misc.md"]
