@@ -1,12 +1,22 @@
 pre.sourceCode {
-    font-family: mono;
-    font-size: 0.9em;
+    font-family: monospace;
+    font-size: 1.1em;
+    line-height: 1.2em;
     margin: 0 auto 0.5em auto;
     padding: 0.5em;
-    background-color: #fdfdfd;
+    background-color: #fffff5;
     border: 1px dashed #ccc;
     overflow-y: hidden;
     overflow-x: auto;
+}
+
+p > code {
+    border: 1px dashed #ccc;
+    background-color: #fffff5;
+    font-family: monospace;
+    font-size: 1.1em;
+    padding:0 0.1em 0 0.1em;
+    margin: 0;
 }
 
 .sourceCode span.kw { color: #007020; font-weight: bold; }
