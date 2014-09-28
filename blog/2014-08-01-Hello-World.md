@@ -15,6 +15,8 @@ Unfortunately, I didn't find it. In fact, something worse happened. Along the wa
 
 I decided to try [Hakyll](http://jaspervdj.be/hakyll/), a static site generator written in Haskell, a pure functional programming language. Now, I'm not well-versed in Haskell, but I did have to learn some to be able to configure [Xmonad](http://xmonad.org/) a while back. Why not use it for my blog too? Why not use it for everything? Everything must be pure!
 
+See how deep the rabbit hole goes? My poor mind.
+
 Here is a whirlwind overview of my setup. If you're in bed with static site generation, there is nothing new here. After the overview, I'll show you how I tackled localization on my blog.
 
 ### Setup
@@ -81,6 +83,8 @@ And of course, templating is also done via Pandoc. For example, all of those Mar
 There are a bunch of other Hakyll-related things that tie everything together, and you can read about them [here](http://jaspervdj.be/hakyll/tutorials/04-compilers.html). This is only meant to be an overview of how stuff works, but perhaps one day I'll write a full tutorial.
 
 ...And voilà! An elegant solution that lets me focus on writing instead of fiddling with things. And really, that's all there is to it.
+
+If you're not interested in Haskell or Hakyll, feel free to skip the next section and go outside.
 
 
 ### Multiple (human) languages
