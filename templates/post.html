@@ -1,6 +1,6 @@
 <div class="info">
     <h2>$title$</h2>
-    <em>Written $created$</em>
+    <em>$if(sr)$написано$endif$$if(en)$written$endif$ $created$</em>
 </div>
 
 $body$
@@ -9,10 +9,10 @@ $body$
 
 <div class="post_footer"> 
     $if(updated)$
-        <em>Updated on $updated$</em><br/>
+        <em>$if(sr)$Ажурирано$endif$$if(en)$Updated$endif$ $updated$</em><br/>
     $endif$
     
     $if(tags)$
-        Tags: $tags$
+        $if(sr)$Тагови$endif$$if(en)$Tags$endif$: $tags$
     $endif$
 </div>

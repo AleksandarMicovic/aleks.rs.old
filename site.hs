@@ -186,4 +186,4 @@ blog_pattern language
 
 -- TODO: Once I reach Haskell satori, find a way to do this elegantly per language.
 all_pages :: Pattern
-all_pages = fromList ["pages/о_мени.md", "pages/about.md", "pages/projects.md", "pages/misc.md"]
+all_pages = fromList ["pages/о_мени.md", "pages/about.md", "pages/projects.md", "pages/misc.md", "pages/разно.md"]
