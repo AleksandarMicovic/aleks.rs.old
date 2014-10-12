@@ -42,7 +42,7 @@ site language =
     -- Render all pages in every language since language-specific URLs will
     -- point to different versions of the same document.
 
-    match (all_pages) $ do
+    match (all_pages language) $ do
         route   $ niceRoute
         compile $ pandocCompiler
             >>= loadAndApplyTemplate "templates/base.html" (pageCtx language)
@@ -64,7 +64,7 @@ site language =
 
     -- Beyond being renamed, the archive page gathers language-specific posts only.
 
-    match (fromList ["pages/архив.html", "pages/archive.html"]) $ do
+    match (archive_pattern language) $ do
         route $ niceRoute
         compile $ do
             posts <- recentFirst =<< loadAll (blog_pattern language)
@@ -169,6 +169,8 @@ getLanguageMapping language key
 getTranslation :: String -> (String, String)
 getTranslation identifier = fromMaybe ("a", "a") (Map.lookup identifier translations)
 
+-- TODO: Once I reach Haskell satori, find a way to do this elegantly per language.
+
 translations :: Map.Map String (String, String)
 translations = Map.fromList [
     ("language", ("English", "Српски"))
@@ -184,6 +186,12 @@ blog_pattern language
     | language == "en" = "blog/*"
     | language == "sr" = "блог/*"
 
--- TODO: Once I reach Haskell satori, find a way to do this elegantly per language.
-all_pages :: Pattern
-all_pages = fromList ["pages/о_мени.md", "pages/about.md", "pages/projects.md", "pages/misc.md", "pages/разно.md"]
+archive_pattern :: String -> Pattern
+archive_pattern language
+    | language == "en" = "pages/archive.html"
+    | language == "sr" = "pages/архив.html"
+
+all_pages :: String -> Pattern
+all_pages language 
+    | language == "en" = fromList ["pages/about.md", "pages/misc.md"]
+    | language == "sr" = fromList ["pages/о_мени.md", "pages/разно.md"]
