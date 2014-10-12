@@ -15,7 +15,13 @@ iframe {
 }
 
 #new_question {
-    text-indent: 4em;
+    text-align: center;
+}
+
+#new_question > select {
+    display: block;
+    text-align: center;
+    margin: 0 auto;
 }
 
 #start_app {
@@ -28,4 +34,8 @@ iframe {
     background-color: #ffffdd;
     border: 2px solid black;
     padding: 2px;
+}
+
+#questions_added {
+    margin-bottom: 0.5em;
 }

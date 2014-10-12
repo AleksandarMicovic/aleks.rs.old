@@ -746,7 +746,7 @@ function add_question() {
     $("#filtered_question option:first").attr('selected', 'selected');
 
     // Add a finished link to clear the current question from being added.
-    var finished_link = " <a href='#' id='finished_question'>Done!</a>";
+    var finished_link = "<a href='#' id='finished_question'>Add filter!</a>";
     $("#new_question").append(finished_link);
 
     // Update the map with everything in QUESTIONS/FILTERS_ADDED, and also include
@@ -795,7 +795,7 @@ function update_handlers() {
 
     // Update the map on any question change.
     $("#main_question").change(function() {
-        var finished_link = " <a href='#' id='finished_question'>Done!</a>";
+        var finished_link = " <a href='#' id='finished_question'>Add filter!</a>";
         var question_id = parseInt($("#main_question option:selected").val());
         var filters_select_box = build_local_select_box(question_id);
 
