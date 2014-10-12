@@ -35,6 +35,14 @@ site language =
         route idRoute
         compile copyFileCompiler
 
+    match "js/*" $ do
+        route idRoute
+        compile copyFileCompiler
+
+    match "extra/*/*" $ do
+        route idRoute
+        compile copyFileCompiler
+
     -- Build the correct tags from posts in the correct language.
 
     tags <- buildTags (blog_pattern language) (fromCapture "tags/*.html")
