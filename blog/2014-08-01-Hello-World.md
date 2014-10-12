@@ -1,7 +1,7 @@
 ---
 title: Hello World!
 slug: hello-world
-created: 2014-08-01
+created: 2014-10-10
 tags: hakyll, haskell
 ---
 
