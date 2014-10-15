@@ -8,6 +8,12 @@ import System.Environment (getEnv)
 import Data.Maybe (fromMaybe)
 import Data.Text (replace)
 import qualified Data.Map as Map
+import Prelude hiding (id,(.))
+import Control.Arrow
+import Control.Category
+import Data.List
+import Data.Monoid
+import Data.Ord
 --------------------------------------------------------------------------------
 
 config = defaultConfiguration
@@ -122,8 +128,14 @@ site language =
                 >>= relativizeUrls
                 >>= removeIndexHtml
 
-    -- Compile dem templates.
+    -- Render Atom feed
+    create [(atom_feed_url language)] $ do
+        route idRoute
+        compile $ do
+            posts <- fmap (take 10) . recentFirst =<< loadAll (blog_pattern language)
+            renderAtom (myFeedConfiguration language) (postCtx language tags) posts
 
+    -- Compile dem templates.
     match "templates/*" $ compile templateCompiler
 
 --------------------------------------------------------------------------------
@@ -203,3 +215,20 @@ all_pages :: String -> Pattern
 all_pages language 
     | language == "en" = fromList ["pages/about.md", "pages/misc.md"]
     | language == "sr" = fromList ["pages/о_мени.md", "pages/разно.md"]
+
+atom_feed_url :: String -> Identifier
+atom_feed_url language
+    | language == "en" = "atom.xml"
+    | language == "sr" = "aтом.xml"
+
+myFeedConfiguration :: String -> FeedConfiguration
+myFeedConfiguration language = FeedConfiguration
+    { feedTitle       = getLanguageMapping language "title" 
+    , feedDescription = if language == "en" then 
+                            "A feed for my writings, hot off the press."
+                        else
+                            "Атом за моје постове чим напишем нешто."
+    , feedAuthorName  = getLanguageMapping language "title"
+    , feedAuthorEmail = "aleks.micovic@gmail.com"
+    , feedRoot        = if language == "en" then "http://aleks.rs" else "http://алекс.срб"
+    }

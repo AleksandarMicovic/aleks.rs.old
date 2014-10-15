@@ -265,8 +265,8 @@ h1, h2 {
     text-align: center;
 }
 
-#footer td.cc {
-    padding-top: 0.5em;
+#footer td.feed {
+    font-size: 1.5em;
     text-align: right;
 }
 

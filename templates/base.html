@@ -62,7 +62,12 @@
           <tr>
             <td class="wq">C-x C-c</td>
             <td class="source"><a href="https://github.com/AleksandarMicovic/aleks.rs" target="_blank">$if(en)$view source$else$извор сајта$endif$</a></td>
-            <td class="cc"><a id="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank"><img src="/images/cc-by-sa.svg" /></a></td>
+            <td class="feed">
+              <a href="$if(en)$/atom.xml$endif$$if(sr)$/aтом.xml$endif$">                           
+                $if(en)$ Atom Feed $endif$                                                          
+                $if(sr)$ Атом $endif$                                                             
+              </a>         
+            </td>
           </tr>
         </table>
       </div>
