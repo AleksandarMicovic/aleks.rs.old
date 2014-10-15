@@ -2,3 +2,7 @@
 $partial("templates/posts.html")$
 $if(en)$<p><a href="/archive/">View archive</a></p>$endif$
 $if(sr)$<p><a href="/архив/">Отворите архив</a></p>$endif$
+
+<h3>$if(en)$Tag Cloud$else$Облак тагова$endif$</h3>
+
+<div class="tag_cloud">$tagcloud$</div>

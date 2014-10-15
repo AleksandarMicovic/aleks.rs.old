@@ -101,6 +101,7 @@ site language =
                     [ listField "posts" (pageCtx language) (return posts)
                     , constField "title" (getLanguageMapping language "home")
                     , pageCtx language
+                    , tagCloudCtx tags
                     ]
 
             getResourceBody
@@ -152,6 +153,10 @@ pageCtx language = mconcat
     , constField language language
     ]
 
+tagCloudCtx :: Tags -> Context String
+tagCloudCtx tags = field "tagcloud" $ \item -> rendered
+  where rendered = renderTagCloud 100.0 250.0 tags
+
 niceRoute :: Routes
 niceRoute = customRoute createIndexRoute
   where
@@ -159,15 +164,15 @@ niceRoute = customRoute createIndexRoute
 
 prefixRoute :: String -> Routes
 prefixRoute prefix = customRoute addPrefix
-    where addPrefix path = prefix ++ "/" ++ takeBaseName (toFilePath path) </> "index.html"
+  where addPrefix path = prefix ++ "/" ++ takeBaseName (toFilePath path) </> "index.html"
 
 languageRoute :: String-> String -> Routes
 languageRoute language url = customRoute newRoute
-    where newRoute path = (getLanguageMapping language url) </> "index.html"
+  where newRoute path = (getLanguageMapping language url) </> "index.html"
 
 prefixRouteWithoutFile :: String -> Routes
 prefixRouteWithoutFile prefix = customRoute addPrefix
-    where addPrefix path = prefix ++ "/"  </> "index.html"
+  where addPrefix path = prefix ++ "/"  </> "index.html"
 
 removeIndexHtml :: Item String -> Compiler (Item String)
 removeIndexHtml item = return $ fmap (withUrls removeIndexStr) item

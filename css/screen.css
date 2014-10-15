@@ -310,3 +310,13 @@ span.code {
     background-color: #fffff9;
     padding: 0em 0.2em 0em 0.2em;
 }
+
+.tag_cloud {
+    margin-top: 0.5em;
+    text-align: center;
+}
+
+.tag_cloud > a {
+    text-decoration: none !important;
+    padding: 0.1em;
+}
