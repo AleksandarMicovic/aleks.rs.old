@@ -2,7 +2,7 @@
 
 ### Me
 
-If you're looking for my CV, you can find it [here](/static/resume.pdf).
+If you're looking for my CV, you can find it [here](http://aleksandarmicovic.com/static/resume.pdf).
 
 My name is Aleksandar Mićović, and this is my little corner of the Internet. I have a degree in Computer Science from the University of Toronto, and work as a software engineer in Belgrade, Serbia. I spend a lot of my spare time coding, and consistently dreaming about monads and burritos. I have not spoken to a psychologist yet.
 
