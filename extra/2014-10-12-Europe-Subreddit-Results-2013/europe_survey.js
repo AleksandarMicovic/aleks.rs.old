@@ -1,6 +1,7 @@
 var TOTAL = 0;
 var IFRAME = null;
 var INNER_IFRAME = null;
+var COLOURING_METHOD = null;
 
 var RESPONSES = [];
 
@@ -570,6 +571,7 @@ function prepare_countries() {
         COUNTRIES[country].total = 0;
         COUNTRIES[country].percentage = 0;
         COUNTRIES[country].colour = "#f0f0f0";
+        COUNTRIES[country].population = 0;
     }
 
     $.get("/extra/2014-10-12-Europe-Subreddit-Results-2013/europe_survey.csv", function(csv) {
@@ -583,6 +585,8 @@ function prepare_countries() {
                 // If you ain't European bud, we ain't graphin' you.
                 continue;
             }
+
+            COUNTRIES[response[4]].population += 1;
 
             // Go through every question in the current response.
             RESPONSES.push(response);
@@ -927,13 +931,20 @@ function colour_countries() {
     base_colour = "#FFCCCC";
     var iframe = document.getElementById('map_of_europe');
     var inner_iframe = iframe.contentDocument || iframe.contentWindow.document;
+    var method_total = 0;
 
     for (var country in COUNTRIES) {
         if (COUNTRIES[country].total == 0){
             COUNTRIES[country].percentage = 0;
             COUNTRIES[country].colour = "#f0f0f0";
         } else {
-            var percentage = ((COUNTRIES[country].total / TOTAL) * 100).toFixed(2);
+            if (COLOURING_METHOD == "country") {
+                method_total = COUNTRIES[country].population;
+            } else {
+                method_total = TOTAL;
+            }
+
+            var percentage = ((COUNTRIES[country].total / method_total) * 100).toFixed(2);
             COUNTRIES[country].percentage = percentage; // Round to 2.
             COUNTRIES[country].colour = darken_colour(base_colour, -parseInt(percentage) * 10); // A simple scalar for greater variance.
         }
@@ -999,6 +1010,13 @@ $(document).ready(function() {
             e.preventDefault();
             e.stopPropagation();
             add_question();
+        });
+
+        // Make sure we also update the map based on the colouring method.
+        COLOURING_METHOD = $("[name=colour]:checked").val();
+        $("[name=colour]").change(function() {
+            COLOURING_METHOD = $("[name=colour]:checked").val();
+            colour_countries();
         });
     });
 });

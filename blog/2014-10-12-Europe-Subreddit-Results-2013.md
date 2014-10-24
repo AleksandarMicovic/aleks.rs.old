@@ -35,6 +35,11 @@ Below is a tool that allows you to combine questions from the survey, and displa
 
 <div class="center"><iframe src="/extra/2014-10-12-Europe-Subreddit-Results-2013/map.svg" width="680" height="520" class="overflow_hidden border_all" scrolling="no" id="map_of_europe"></iframe></div>
 
+<div class="center">
+<input type="radio" name="colour" value="country" checked="true" /> Calculate *per* country
+<input type="radio" name="colour" value="europe" /> Calculate across Europe
+</div>
+
 
 ### Things learned
 
