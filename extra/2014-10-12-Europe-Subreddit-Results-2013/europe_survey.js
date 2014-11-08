@@ -775,8 +775,6 @@ function update_handlers() {
         var id = $(this).attr('id').split("remove_")[1];
         var location_in_array = QUESTIONS_ADDED.indexOf(parseInt(id));
 
-        console.log(e);
-
         if (~location_in_array) {
             QUESTIONS_ADDED.splice(location_in_array, 1);
             FILTERS_ADDED.splice(location_in_array, 1);
@@ -906,29 +904,13 @@ function update_map(current_query) {
     colour_countries();
 }
 
-function darken_colour(colour, shade) {
-    var colour_int = parseInt(colour.substring(1),16);
-     
-    var red = (colour_int & 0xFF0000) >> 16;
-    var green = (colour_int & 0x00FF00) >> 8;
-    var blue = (colour_int & 0x0000FF) >> 0;
-    
-    red = red + Math.floor((shade / 255) * red);
-    green = green + Math.floor((shade / 255) * green);
-    blue = blue + Math.floor((shade / 255) * blue);
-           
-    var new_colour_int = (red << 16) + (green << 8) + (blue);
-    var new_colour = "#" + new_colour_int.toString(16);
-
-    if (new_colour.indexOf("-") == -1) {
-        return new_colour;
-    } else {
-        return "#000000"
-    }
+function darken_colour(colour, percent) {
+    var f=parseInt(colour.slice(1),16),t=percent<0?0:255,p=percent<0?percent*-1:percent,R=f>>16,G=f>>8&0x00FF,B=f&0x0000FF;
+    return "#"+(0x1000000+(Math.round((t-R)*p)+R)*0x10000+(Math.round((t-G)*p)+G)*0x100+(Math.round((t-B)*p)+B)).toString(16).slice(1);
 }
 
 function colour_countries() {
-    base_colour = "#FFCCCC";
+    base_colour = "#ffcccc";
     var iframe = document.getElementById('map_of_europe');
     var inner_iframe = iframe.contentDocument || iframe.contentWindow.document;
     var method_total = 0;
@@ -946,7 +928,7 @@ function colour_countries() {
 
             var percentage = ((COUNTRIES[country].total / method_total) * 100).toFixed(2);
             COUNTRIES[country].percentage = percentage; // Round to 2.
-            COUNTRIES[country].colour = darken_colour(base_colour, -parseInt(percentage) * 10); // A simple scalar for greater variance.
+            COUNTRIES[country].colour = darken_colour(base_colour, -percentage / 100);
         }
 
         // We can finally colour in the countries now.
