@@ -4,7 +4,7 @@ pre.sourceCode {
     line-height: 1.2em;
     margin: 0 auto 0.5em auto;
     padding: 0.5em;
-    background-color: #fffff5;
+    background-color: #fffffd;
     border: 1px dashed #ccc;
     overflow-y: hidden;
     overflow-x: auto;
@@ -12,7 +12,7 @@ pre.sourceCode {
 
 p > code {
     border: 1px dashed #ccc;
-    background-color: #fffff5;
+    background-color: #fffffd;
     font-family: monospace;
     font-size: 1.1em;
     padding:0 0.1em 0 0.1em;
