@@ -11,3 +11,4 @@ site.o
 site.hi
 *.swp
 .cabal-sandbox
+cabal.sandbox.config
