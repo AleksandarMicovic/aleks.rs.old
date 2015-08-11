@@ -3,7 +3,7 @@
 import Data.Monoid (mappend, mconcat)
 import Hakyll
 import System.FilePath.Posix (takeDirectory, takeBaseName,(</>),splitFileName)
-import Data.List (isInfixOf) 
+import Data.List (isInfixOf)
 import System.Environment (getEnv)
 import Data.Maybe (fromMaybe)
 import Data.Text (replace)
@@ -23,7 +23,7 @@ main = do
     language <- getEnv "TARGET_LANGUAGE"
     hakyllWith config (site language)
 
-site language = 
+site language =
     let posts_url = getLanguageMapping language "posts_prefix_url"
         y = 2 in do
 
@@ -61,7 +61,6 @@ site language =
         compile $ pandocCompiler
             >>= loadAndApplyTemplate "templates/base.html" (pageCtx language)
             >>= relativizeUrls
-            >>= removeIndexHtml
 
     -- Blog posts are written in different languages, and live in a different
     -- part of the file hierarchy.
@@ -74,7 +73,6 @@ site language =
             >>= loadAndApplyTemplate "templates/post.html" (postCtx language tags)
             >>= loadAndApplyTemplate "templates/base.html" (postCtx language tags)
             >>= relativizeUrls
-            >>= removeIndexHtml
 
     -- Beyond being renamed, the archive page gathers language-specific posts only.
 
@@ -90,7 +88,6 @@ site language =
             getResourceBody
                 >>= applyAsTemplate archiveCtx
                 >>= loadAndApplyTemplate "templates/base.html" archiveCtx
-                >>= removeIndexHtml
                 >>= relativizeUrls
 
     match "pages/index.html" $ do
@@ -108,8 +105,7 @@ site language =
                 >>= applyAsTemplate indexCtx
                 >>= loadAndApplyTemplate "templates/base.html" indexCtx
                 >>= relativizeUrls
-                >>= removeIndexHtml
-    
+
     tagsRules tags $ \tag pattern -> do
         let title = tag :: String
 
@@ -127,7 +123,6 @@ site language =
                 >>= loadAndApplyTemplate "templates/tag.html" postsCtx
                 >>= loadAndApplyTemplate "templates/base.html" postsCtx
                 >>= relativizeUrls
-                >>= removeIndexHtml
 
     -- Render Atom feed
     create [(atom_feed_url language)] $ do
@@ -148,7 +143,7 @@ postCtx language tags = mconcat
     ]
 
 pageCtx :: String -> Context String
-pageCtx language = mconcat 
+pageCtx language = mconcat
     [ defaultContext
     , constField language language
     ]
@@ -173,16 +168,6 @@ languageRoute language url = customRoute newRoute
 prefixRouteWithoutFile :: String -> Routes
 prefixRouteWithoutFile prefix = customRoute addPrefix
   where addPrefix path = prefix ++ "/"  </> "index.html"
-
-removeIndexHtml :: Item String -> Compiler (Item String)
-removeIndexHtml item = return $ fmap (withUrls removeIndexStr) item
-
-removeIndexStr :: String -> String
-removeIndexStr url = case splitFileName url of
-    (dir, "index.html") | isLocal dir -> dir
-                        | otherwise -> url
-    _ -> url
-    where isLocal uri = not (isInfixOf "://" uri)
 
 getLanguageMapping :: String -> String -> String
 getLanguageMapping language key
@@ -217,7 +202,7 @@ archive_pattern language
     | language == "sr" = "pages/архив.html"
 
 all_pages :: String -> Pattern
-all_pages language 
+all_pages language
     | language == "en" = fromList ["pages/about.md", "pages/misc.md"]
     | language == "sr" = fromList ["pages/о_мени.md", "pages/разно.md"]
 
@@ -228,8 +213,8 @@ atom_feed_url language
 
 myFeedConfiguration :: String -> FeedConfiguration
 myFeedConfiguration language = FeedConfiguration
-    { feedTitle       = getLanguageMapping language "title" 
-    , feedDescription = if language == "en" then 
+    { feedTitle       = getLanguageMapping language "title"
+    , feedDescription = if language == "en" then
                             "A feed for my writings, hot off the press."
                         else
                             "Атом за моје постове чим напишем нешто."
